@@ -1,4 +1,5 @@
-Djangify eCommerce Site
+# Djangify eCommerce Site
+![Djangify eCommerce shop](https://github.com/djangify/djangify-site/blob/7e76a024ae9e47e1a286aa2e8ab3b4814e1d520d/responsive-ecommerce.png)
 <p align="center"> <a href="https://www.djangoproject.com/"> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"> </a> <a href="https://tailwindcss.com/"> <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"> </a> <a href="https://www.postgresql.org/"> <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"> </a> <a href="https://www.django-rest-framework.org/"> <img src="https://img.shields.io/badge/Django%20REST%20Framework-ff1709?style=for-the-badge&logo=django&logoColor=white" alt="Django REST Framework"> </a> </p>
 
 A modern, responsive ecommerce demonstration site built with Django, Tailwind CSS, PostgreSQL, and the Django REST Framework.
@@ -25,8 +26,8 @@ Layer	Technology
 Backend	Django, Django REST Framework
 Frontend	Tailwind CSS v4 (with CSS variables for accessibility)
 Database	PostgreSQL
-Templates	Django Templates + Jinja syntax
-Hosting	VPS / Render / Railway (with Gunicorn & Nginx)
+Templates	Django Templates 
+Hosting	VPS (with Gunicorn & Nginx)
 Versioning	Git + GitHub
 
 ⚙️ Project Highlights
