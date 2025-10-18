@@ -1,0 +1,60 @@
+{% load static %}
+{% load video_tags %}
+
+<!-- Latest Blog Posts Section -->
+<section class="w-full py-8">
+  <div class="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+    <!-- Blog Section Title and Intro -->
+    <a href="{% url 'news:list' %}" class="hover:text-[--color-brand-secondary] transition-colors">
+      <h2 class="text-3xl sm:text-4xl lg:text-4xl font-semibold tracking-tight text-[--color-brand-primary] mb-2">
+        {{ homepage_settings.blog_section_title }}
+      </h2>
+    </a>
+
+    <p class="text-[--color-font-main] mb-8 max-w-3xl mx-auto leading-relaxed">
+      {{ homepage_settings.blog_section_intro |safe }}
+    </p>
+
+    {% if blog_posts %}
+      <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-8">
+        {% for post in blog_posts %}
+          <div class="border border-[color:var(--color-brand-accent)] rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <a href="{{ post.get_absolute_url }}" class="block group">
+              
+              <!-- Thumbnail -->
+              <div class="h-48 overflow-hidden">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                {% elif post.external_image_url %}
+                  <img src="{{ post.external_image_url }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                {% elif post.youtube_url %}
+                  {% with post.youtube_url|youtube_id as video_id %}
+                    <img src="https://img.youtube.com/vi/{{ video_id }}/maxresdefault.jpg"
+                      alt="{{ post.title }}"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      onerror="this.onerror=null; this.src='https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg';">
+                  {% endwith %}
+                {% endif %}
+              </div>
+
+              <!-- Post Content -->
+              <div class="p-6 text-left bg-white">
+                <h3 class="text-xl font-semibold  mb-3">
+                  {{ post.title }}
+                </h3>
+                <p class=" mb-4 text-base leading-relaxed">
+                  {{ post.content|safe|truncatewords:25 }}
+                </p>
+                <span class="block mt-4 text-[color:var(--color-brand-primary)] font-medium uppercase text-sm tracking-wide">
+                  Continue Reading →
+                </span>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+        {% endif %}
+  </div>
+</section>
+

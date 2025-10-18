@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Turn Your Expertise Into a Professional PDF{% endblock %}
+
+{% block open_graph_tags %}
+  <meta property="og:title" content="Turn Your Expertise Into a Professional PDF" />
+  <meta property="og:description" content="Learn why every small business owner should package their expertise into a professional PDF. Authority, design, and done-for-you options explained." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/pdf-creation-hero.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Turn Your Expertise Into a Professional PDF" />
+  <meta name="twitter:description" content="Learn why every small business owner should package their expertise into a professional PDF. Authority, design, and done-for-you options explained." />
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/pdf-creation.jpg" />
+{% endblock %}
+
+{% block content %}
+<div class="pageformat" role="main" aria-labelledby="page-title">
+
+  <!-- HEADER -->
+  <header aria-labelledby="page-title">
+    <h1 id="page-title" class="leading-normal">Turn Your Expertise Into a Professional PDF</h1>
+    <p>
+      <span class="sr-only">Page summary:</span>
+      Every small business owner, coach, or consultant has valuable knowledge.
+      Packaging it into a polished PDF positions you as the expert your audience trusts —
+      whether as a lead magnet, a client resource, or a digital product you can sell.
+    </p>
+  </header>
+
+  <!-- STEP CARDS -->
+  <section aria-labelledby="core-articles" class="mt-16">
+    <h2 id="core-articles" class="leading-normal">Four Core Articles on Business PDFs</h2>
+    <div class="responsive-grid" role="list">
+      <a href="/news/why-experts-need-pdfs/" class="shop-category" role="listitem" aria-label="Article 1 – Why Every Expert Needs a PDF">
+        <div class="text-sm font-semibold text-gray-500">Article 1</div>
+        <h3 class="text-xl font-semibold mt-1 text-[color:var(--color-font-main)]">Why Every Expert Needs a PDF</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">Build authority, capture leads, and create digital products that last.</p>
+      </a>
+      <a href="/news/what-goes-into-a-great-pdf/" class="shop-category" role="listitem" aria-label="Article 2 – What Goes Into a Great Business PDF">
+        <div class="text-sm font-semibold text-gray-500">Article 2</div>
+        <h3 class="text-xl font-semibold mt-1 text-[color:var(--color-font-main)]">What Goes Into a Great Business PDF</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">Clear structure, engaging design, and calls-to-action that convert.</p>
+      </a>
+      <a href="/news/common-pdf-mistakes/" class="shop-category" role="listitem" aria-label="Article 3 – Common Mistakes to Avoid">
+        <div class="text-sm font-semibold text-gray-500">Article 3</div>
+        <h3 class="text-xl font-semibold mt-1 text-[color:var(--color-font-main)]">Common Mistakes to Avoid</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">Overcomplication, weak visuals, and missing follow-up actions.</p>
+      </a>
+      <a href="/news/examples-of-pdfs/" class="shop-category" role="listitem" aria-label="Article 4 – Examples of PDFs That Work">
+        <div class="text-sm font-semibold text-gray-500">Article 4</div>
+        <h3 class="text-xl font-semibold mt-1 text-[color:var(--color-font-main)]">Examples of PDFs That Work</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">Lead magnets, service brochures, guides, and workbooks.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- QUICK ANSWERS -->
+  <section class="mt-16" aria-labelledby="quick-answers">
+    <h2 id="quick-answers" class="leading-normal">Quick Answers About Business PDFs</h2>
+    <div class="space-y-6 mt-6">
+      <div>
+        <h3 class="text-lg font-semibold">What is the benefit of having a business PDF?</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">
+          A professional PDF provides a lasting resource for lead generation, client education, or direct sales.
+          Unlike social media posts, which disappear quickly, PDFs are downloaded, saved, and often shared.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">How long should a business PDF be?</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">
+          Most effective PDFs run between 8–20 pages — enough to provide value without overwhelming readers.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">Can I create a PDF myself?</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">
+          Yes, but a done-for-you service saves time and guarantees professional, branded results.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold">What types of businesses benefit most from PDFs?</h3>
+        <p class="mt-2 text-[color:var(--color-font-main)]">
+          PDFs work best for coaches, consultants, and service providers who rely on trust and expertise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  {% comment %} <section class="mt-16" aria-labelledby="pdf-service">
+    <div class="bg-[color:var(--color-brand-light)] border border-[color:var(--color-brand-accent)] rounded-2xl p-6">
+      <h2 id="pdf-service" class="text-2xl font-semibold">Done-for-You PDF Creation Service</h2>
+      <p class="mt-2 text-[color:var(--color-font-main)]">
+        Don’t have time to plan, write, and design a professional PDF? Send your content and get a branded, polished document
+        ready to use as a client resource or digital download.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-4" role="group" aria-label="Start or view options">
+        <a href="/shop/product/pdf-creation-service/"
+           class="px-4 py-2 rounded bg-[color:var(--color-brand-accent)] text-[color:var(--color-font-main)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition"
+           aria-label="Order the PDF Creation Service">Start Here</a>
+        <a href="{% url 'core:home' %}#latest-products"
+           class="px-4 py-2 rounded bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-accent)] hover:text-[color:var(--color-font-main)] transition"
+           aria-label="View our other digital products">View Other Products</a>
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+  <!-- FAQ -->
+  <section id="faq" class="mt-16" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+  <div class="max-w-3xl space-y-4">
+
+    <details class="bg-[color:var(--color-brand-light)] rounded-lg shadow-sm p-4">
+      <summary class="font-semibold cursor-pointer">Do I need design skills to make a PDF?</summary>
+      <p class="mt-3 text-[color:var(--color-font-main)] px-4">
+        Not at all. You don’t need design experience to create a professional PDF.  
+        I handle layout, branding, and formatting so your content looks clean, consistent, and on-brand.  
+        Whether you’re repurposing blog posts or building from scratch, I make sure the finished PDF reflects your business identity.  
+        You simply provide your words, images, or ideas, and I turn them into a polished digital product you’ll be proud to share.
+      </p>
+    </details>
+
+    <details class="bg-[color:var(--color-brand-light)] rounded-lg shadow-sm p-4">
+      <summary class="font-semibold cursor-pointer">What formats can my PDF be used in?</summary>
+      <p class="mt-3 text-[color:var(--color-font-main)] px-4">
+        Your PDF can serve multiple purposes — as a lead magnet, a client onboarding resource, a workshop handout, or a paid digital product.  
+        Because PDFs open on almost any device, they’re versatile and easy to distribute via email, your website, or online shops.  
+        I also optimise files for both screen and print use, so you can share them digitally or offer them as printed materials without losing quality.
+      </p>
+    </details>
+
+    <details class="bg-[color:var(--color-brand-light)] rounded-lg shadow-sm p-4">
+      <summary class="font-semibold cursor-pointer">How long does it take to create a business PDF?</summary>
+      <p class="mt-3 text-[color:var(--color-font-main)] px-4">
+        Simple PDFs, such as checklists or one-page guides, can be completed within a week once I receive your content.  
+        Longer documents like workbooks or ebooks typically take two to three weeks.  
+        The timeline depends on the amount of content, images, and revisions needed.  
+        Every project includes clear milestones and progress updates, so you’ll know exactly when your final PDF will be ready to publish or sell.
+      </p>
+    </details>
+
+    <details class="bg-[color:var(--color-brand-light)] rounded-lg shadow-sm p-4">
+      <summary class="font-semibold cursor-pointer">What’s the difference between a PDF and an ebook?</summary>
+      <p class="mt-3 text-[color:var(--color-font-main)] px-4">
+        A PDF keeps your layout, fonts, and images exactly as designed, which is ideal for branded materials, guides, and workbooks.  
+        An ebook, on the other hand, is reflowable text — better for long-form reading on Kindle or mobile devices.  
+        For most small businesses, PDFs are more practical because they maintain your professional look, can include links and visuals, and are easy to download and share.
+      </p>
+    </details>
+
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need design skills to make a PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not at all. You do not need design experience to create a professional PDF. I handle layout, branding, and formatting so your content looks clean, consistent, and on-brand. Whether you are repurposing blog posts or building from scratch, I make sure the finished PDF reflects your business identity. You simply provide your words, images, or ideas, and I turn them into a polished digital product you will be proud to share."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What formats can my PDF be used in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your PDF can serve multiple purposes—as a lead magnet, a client onboarding resource, a workshop handout, or a paid digital product. Because PDFs open on almost any device, they are versatile and easy to distribute via email, your website, or online shops. I also optimise files for both screen and print use, so you can share them digitally or offer them as printed materials without losing quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to create a business PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simple PDFs, such as checklists or one-page guides, can be completed within a week once I receive your content. Longer documents like workbooks or ebooks typically take two to three weeks. The timeline depends on the amount of content, images, and revisions needed. Every project includes clear milestones and progress updates, so you will know exactly when your final PDF will be ready to publish or sell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a PDF and an ebook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A PDF keeps your layout, fonts, and images exactly as designed, which is ideal for branded materials, guides, and workbooks. An ebook, on the other hand, is reflowable text—better for long-form reading on Kindle or mobile devices. For most small businesses, PDFs are more practical because they maintain your professional look, can include links and visuals, and are easy to download and share."
+      }
+    }
+  ]
+}
+</script>
+
+  <!-- RELATED CLUSTER PAGES -->
+  <section class="mt-16" aria-labelledby="related-pages">
+    <h2 id="related-pages" class="text-2xl font-semibold mb-6">Related Cluster Pages</h2>
+    <div class="cluster-grid" role="list">
+      <a href="https://djangify.com/tech-va/" class="shop-category" role="listitem" aria-label="Tech VA Support Page">
+        <p>Tech VA</p>
+        <p>Support for small businesses to simplify and delegate tech tasks.</p>
+      </a>
+      <a href="#" class="shop-category" role="listitem" aria-label="PDF Creation Page">
+        <p>PDF Creation</p>
+        <p>Turn your expertise into DIY guides and resources.</p>
+      </a>
+      <a href="#" class="shop-category" role="listitem" aria-label="More Cluster Pages">
+        <h3>Coming Soon</h3>
+        <p>Additional cluster pages to be added.</p>
+      </a>
+      {% comment %} <a href="https://djangify.com/local-business-ai-search/" class="shop-category" role="listitem" aria-label="Local Business AI Search Page">
+        <h3>Local Business AI Search</h3>
+        <p>Get your local business found in AI-powered search results.</p>
+      </a> {% endcomment %}
+    </div>
+  </section>
+</div>
+{% endblock %}
