@@ -154,3 +154,73 @@ class HomePageSettings(models.Model):
     @property
     def get_copyright(self):
         return self.copyright_text or f"© {self.business_name}. All rights reserved."
+
+
+class DashboardSettings(models.Model):
+    """
+    Controls the text, support details, and help items shown
+    on the customer dashboard and support page.
+    Singleton pattern – only one instance allowed.
+    """
+
+    # --- Dashboard Header ---
+    welcome_heading = models.CharField(
+        max_length=150,
+        default="Welcome,",
+        help_text="Main heading text at the top of the dashboard.",
+    )
+    intro_text = models.TextField(
+        blank=True,
+        null=True,
+        default="Here’s an overview of your account and quick access to your saved items.",
+        help_text="Displayed under the welcome heading on the dashboard.",
+    )
+    support_url = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Optional custom URL for the support/contact page. Defaults to /support/.",
+    )
+
+    # --- Left Box: Get In Touch ---
+    left_title = models.CharField(
+        max_length=100,
+        default="Get In Touch",
+        help_text="Title for the left box on the support page.",
+    )
+    response_time = models.CharField(
+        max_length=100,
+        default="Within 48 hours (weekdays)",
+        help_text="Displayed response time.",
+    )
+    support_hours = models.CharField(
+        max_length=100,
+        default="Monday – Friday, 9AM – 4PM GMT",
+        help_text="Displayed support hours.",
+    )
+    policies_link = models.URLField(
+        blank=True, null=True, help_text="Optional link to policies index page."
+    )
+    docs_link = models.URLField(
+        blank=True, null=True, help_text="Optional link to documentation page."
+    )
+
+    # --- Right Box: What I Can Help With ---
+    help_item_1 = models.CharField(max_length=120, blank=True, null=True)
+    help_item_2 = models.CharField(max_length=120, blank=True, null=True)
+    help_item_3 = models.CharField(max_length=120, blank=True, null=True)
+    help_item_4 = models.CharField(max_length=120, blank=True, null=True)
+    help_item_5 = models.CharField(max_length=120, blank=True, null=True)
+
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Dashboard Settings"
+        verbose_name_plural = "Dashboard Settings"
+
+    def __str__(self):
+        return "Dashboard Settings"
+
+    def save(self, *args, **kwargs):
+        if not self.pk and DashboardSettings.objects.exists():
+            raise ValueError("Only one DashboardSettings instance is allowed.")
+        super().save(*args, **kwargs)

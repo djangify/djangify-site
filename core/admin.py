@@ -1,6 +1,6 @@
 # core/admin.py
 from django.contrib import admin
-from .models import HomePageSettings, SupportRequest
+from .models import HomePageSettings, DashboardSettings, SupportRequest
 
 
 @admin.register(HomePageSettings)
@@ -110,6 +110,60 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
         css = {
             "all": ("admin/css/custom-admin.css",)  # Optional admin custom styling
         }
+
+
+@admin.register(DashboardSettings)
+class DashboardSettingsAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for Dashboard and Support section.
+    """
+
+    fieldsets = (
+        (
+            "Dashboard Header",
+            {
+                "fields": ("welcome_heading", "intro_text", "support_url"),
+                "description": "Main dashboard greeting text and support link.",
+            },
+        ),
+        (
+            "Left Box — Get In Touch",
+            {
+                "fields": (
+                    "left_title",
+                    "response_time",
+                    "support_hours",
+                    ("policies_link", "docs_link"),
+                ),
+                "description": "Information shown in the left box of the Support page.",
+            },
+        ),
+        (
+            "Right Box — What I Can Help With",
+            {
+                "fields": (
+                    "help_item_1",
+                    "help_item_2",
+                    "help_item_3",
+                    "help_item_4",
+                    "help_item_5",
+                ),
+                "description": "Five optional help topics displayed in the right support box.",
+            },
+        ),
+    )
+
+    list_display = ("__str__", "updated")
+
+    class Meta:
+        verbose_name = "Your Dashboard Settings"
+        verbose_name_plural = "Your Dashboard Settings"
+
+    def has_add_permission(self, request):
+        # Enforce singleton pattern
+        if DashboardSettings.objects.exists():
+            return False
+        return True
 
 
 @admin.register(SupportRequest)

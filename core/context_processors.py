@@ -1,5 +1,5 @@
 # core/context_processors.py
-from .models import HomePageSettings
+from .models import HomePageSettings, DashboardSettings
 from django.contrib.sites.models import Site
 
 
@@ -18,7 +18,7 @@ def homepage_settings(request):
         social_links = []
     return {
         "homepage_settings": settings,
-        "social_links": social_links,  # ✅ available everywhere
+        "social_links": social_links,
     }
 
 
@@ -28,3 +28,15 @@ def current_site(request):
     except Site.DoesNotExist:
         site = None
     return {"site": site}
+
+
+def dashboard_settings(request):
+    """
+    Makes DashboardSettings data globally available
+    (used by dashboard.html and support.html templates).
+    """
+    try:
+        settings = DashboardSettings.objects.first()
+    except Exception:
+        settings = None
+    return {"dashboard_settings": settings}

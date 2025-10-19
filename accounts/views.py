@@ -117,7 +117,8 @@ def login_view(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                messages.success(request, f"Welcome back, {username}!")
+                first_name = user.first_name if user.first_name else user.username
+                messages.success(request, f"Welcome back, {first_name}!")
 
                 next_page = request.GET.get("next")
                 return (
