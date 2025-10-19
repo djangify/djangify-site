@@ -25,6 +25,8 @@
           {% if product.get_image_url %}
           <img src="{{ product.get_image_url }}" 
                alt="shop category for {{ product.title }}" 
+               width="700" height="900" 
+               loading="lazy" decoding="async"
                class="w-full h-56 object-cover">
           {% else %}
           <div class="w-full h-56 bg-[color:var(--color-brand-light)] flex items-center justify-center text-[color:var(--color-brand-accent)]">

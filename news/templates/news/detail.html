@@ -39,27 +39,58 @@
 
   {% include 'news/components/breadcrumb.html' %}
 
-  <div class="border border-[color:var(--color-brand-primary)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="border border-[color:var(--color-brand-accent)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-    <!-- Article header -->
+    <!-- Article image with lighthouse compatibility -->
     <section class="mb-4">
       {% if post.youtube_url %}
         <div class="hero-video-wrapper mb-8">
-          <iframe src="{{ post.get_youtube_embed_url }}"
-                  allowfullscreen
-                  class="w-full h-full rounded-lg border-0"></iframe>
+          <iframe 
+            src="{{ post.get_youtube_embed_url }}" 
+            allowfullscreen
+            class="w-full h-full rounded-lg border-0"
+            title="{{ post.title }} video"
+            loading="lazy">
+          </iframe>
         </div>
       {% elif post.external_image_url %}
         <div class="hero-media mb-8">
-          <img src="{{ post.external_image_url }}" alt="image for {{ post.title }}" class="hero-image">
+          <img 
+            src="{{ post.external_image_url }}"
+            srcset="{{ post.external_image_url }} 400w,
+                    {{ post.external_image_url }} 800w,
+                    {{ post.external_image_url }} 1200w"
+            sizes="(max-width: 640px) 400px,
+                  (max-width: 1024px) 800px,
+                  1200px"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            alt="Image for {{ post.title }}"
+            class="hero-image rounded-lg shadow-md">
         </div>
       {% elif post.image %}
         <div class="hero-media mb-8">
-          <img src="{{ post.image.url }}" alt="image for {{ post.title }}" class="hero-image">
+          <img 
+            src="{{ post.image.url }}"
+            srcset="{{ post.image.url }} 400w,
+                    {{ post.image.url }} 800w,
+                    {{ post.image.url }} 1200w"
+            sizes="(max-width: 640px) 400px,
+                  (max-width: 1024px) 800px,
+                  1200px"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            alt="Image for {{ post.title }}"
+            class="hero-image rounded-lg shadow-md">
         </div>
       {% endif %}
+   
 
-
+    <!-- Article title -->
       <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-brand-dark)] leading-tight mb-3">
         {{ post.title }}
       </h1>

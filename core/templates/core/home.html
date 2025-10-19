@@ -37,7 +37,8 @@
           <a href="{{ product.get_absolute_url }}">
             <figure class="mb-4 aspect-[3/4] flex items-center justify-center overflow-hidden rounded-md">
               {% if product.get_image_url %}
-                <img src="{{ product.get_image_url }}" alt=Product - "{{ product.title }}" class="object-contain w-full h-full">
+                <img src="{{ product.get_image_url }}" alt=Product - "{{ product.title }}" width="700" height="900" 
+                loading="lazy" decoding="async" class="object-contain w-full h-full">
               {% else %}
                 <img src="{% static 'images/placeholder.webp' %} alt="" aria-hidden="true class="object-contain w-full h-full">
               {% endif %}
