@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mini Ecommerce Site Builder: Simple Digital & Physical Examples{% endblock %}
+
+{% block open_graph_tags %}
+  <meta property="og:title" content="Mini Ecommerce Shop Setup: Simple Digital & Physical Examples" />
+  <meta property="og:description" content="A practical guide to building a mini ecommerce shop using Djangify for digital products — simple, fast, and ready to grow." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/mini-ecommerce-shop.webp" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mini Ecommerce Site Setup: Simple Digital & Physical Examples">
+  <meta name="twitter:description" content="A practical guide to building a mini ecommerce store using Djangify for digital products — simple, fast, and ready to grow.">
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/responsive-ecommerce.webp">
+{% endblock %}
+
+{% block content %}
+<div class="bg-[color:var(--color-bg-default)]">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12" role="main" aria-labelledby="page-title">
+    
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 id="page-title" class="text-4xl mb-4 font-bold text-[color:var(--color-font-main)]">
+        Mini Ecommerce Site Builder: A Simple Digital Store
+      </h1>
+      <p class="mt-3 text-[color:var(--color-font-main)] max-w-4xl">
+        Let me help you launch a small, smart online store in days, not months. If you want an eCommerce site builder that will help you turn your knowledge into simple, sellable products, this guide walks you through everything you need to get started quickly and confidently.
+      </p>
+    </header>
+
+    <!-- Introduction -->
+    <section class="intro-grid mt-16" aria-labelledby="intro-heading">
+      <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-[color:var(--color-font-main)] mb-3">What Is a Mini Ecommerce Site?</h2>
+        <p class="text-[color:var(--color-font-main)]">
+          A mini ecommerce site focuses on simplicity. You do not need 100 products or expensive subscriptions - just a clear offer, 
+          a smooth checkout, and a trusted way to deliver your product. </p><p>Djangify makes it easy to start a small eCommerce store that you can scale when ready.
+        </p>
+        <ul class="list-disc ml-6 mt-4 text-[color:var(--color-font-main)] space-y-1">
+          <li><strong>Djangify:</strong> For digital product sellers who prefer owning their system.</li>
+          <li><strong>Simple to manage:</strong> One dashboard, clear setup, no monthly plugin clutter.</li>
+          <li><strong>Designed for creators:</strong> Turn your skills or ideas into sustainable income, without the overwhelm of traditional ecommerce.</li>
+        </ul>
+      </div>
+
+      <aside class=" rounded-xl border border-[color:var(--color-brand-accent)] p-6">
+        <h3 class="text-xl font-semibold text-[color:var(--color-brand-primary)] mb-2">Why This Works</h3>
+        <p class="text-[color:var(--color-font-main)]/90">
+          Launching small keeps costs low and focus high. A few clear products on offer helps you test, learn, and grow without overcomplicating your tech or design. <strong> I build the initial site for you </strong>and then you have everything you need to manage your store, add more products, and build an online business.
+        </p>
+          <div class="mt-4 flex gap-3">
+            <a href="https://djangify.com/shop/product/mini-digital-ecommerce-shop/" class="inline-flex items-center px-5 py-3 rounded-lg bg-[color:var(--color-brand-primary)] text-white hover:bg-[color:var(--color-brand-primary-contrast)] font-medium" aria-label="Get Your Mini Ecommerce Site Setup"> eCommerce Site Setup</a>
+          </div>
+      </aside>
+    </section>
+
+    <!-- Six Article Cards -->
+    <section aria-labelledby="six-steps-heading">
+      <h2 id="six-steps-heading" class="text-2xl mt-12 font-semibold text-[color:var(--color-font-main)]">
+        Information On Building A Mini Ecommerce Site
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+
+        <a href="/news/what-is-a-mini-ecommerce-store/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: What Is a Mini Ecommerce Store and Why It Works">
+          <div class="text-sm font-semibold text-gray-500">Article 1</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">What Is a Mini Ecommerce Store (and Why It Works)</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Understand the concept of selling small. Fewer products, faster setup, better margins.</p>
+        </a>
+
+        <a href="/news/choose-products-for-lifestyle-business/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: How to Choose Products That Fit a Lifestyle Business">
+          <div class="text-sm font-semibold text-gray-500">Article 2</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">How to Choose Products That Fit a Lifestyle Business</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Learn how to select and price products that align with your goals, values, and skills.</p>
+        </a>
+
+        <a href="/news/build-mini-digital-store-djangify/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: How to Build a Mini Digital Store with Djangify">
+          <div class="text-sm font-semibold text-gray-500">Article 3</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">How to Build a Mini Digital Store with Djangify</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Upload, connect Stripe, and deliver - your digital store, ready to go.</p>
+        </a>
+
+        <a href="/news/turn-your-store-into-lifestyle-business/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: Turning Your Ecommerce Store Into a Sustainable Lifestyle Business">
+          <div class="text-sm font-semibold text-gray-500">Article 4</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">Turning Your Ecommerce Store Into a Sustainable Lifestyle Business</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Create income that supports your life and not the other way around.</p>
+        </a>
+
+        <a href="/news/steady-income-mini-store/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: From First Sale to Steady Income">
+          <div class="text-sm font-semibold text-gray-500">Article 5</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">From First Sale to Steady Income: Growth Without Burnout</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Learn how to manage growth sensibly, track results, and build stability over time.</p>
+        </a>
+
+        <a href="/news/marketing-and-launching-your-mini-store/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow" aria-label="Read: Marketing and Launching Your Mini Store">
+          <div class="text-sm font-semibold text-gray-500">Article 6</div>
+          <h3 class="text-xl font-semibold text-[color:var(--color-font-main)] mt-1">Marketing and Launching Your Mini Store</h3>
+          <p class="text-[color:var(--color-font-main)] mt-2">Prepare your SEO, speed, and trust signals before going live.</p>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Quick Answers -->
+    <section class="mt-12" aria-labelledby="quick-answers-heading">
+      <h2 id="quick-answers-heading" class="text-2xl font-bold text-[color:var(--color-font-main)] mb-6">
+        Quick Answers to Common Mini Ecommerce Questions
+      </h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[color:var(--color-font-main)]">What is a mini ecommerce shop?</h3>
+          <p class="mt-2 text-[color:var(--color-font-main)]">
+            A mini ecommerce shop is a small, focused online store built around a handful of products - often one to ten. 
+            It is ideal for creators, teachers, or hobbyists who want to sell what they know without the complexity of large platforms. 
+            Each product serves a specific purpose, and everything runs from one simple dashboard you control. There are no huge subscriptions (just a monthly hosting fee) and no clutter. Just a clean, purposeful setup.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[color:var(--color-font-main)]">How many products should I start with?</h3>
+          <p class="mt-2 text-[color:var(--color-font-main)]">
+            You can choose to start with one clear product, then expand naturally. A single digital guide, printable, or course is enough to launch your store. 
+            Once you understand your buyers’ needs, you can add related offers such as bundles or templates, that build on your first product. 
+            Fewer choices keep your message clear and make setup and management much easier to sustain long term.
+            Most creators already have two or three products they want to sell. I will set up anything from one to six products for you to help you get started.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[color:var(--color-font-main)]">Can I run a store if I am not a business owner?</h3>
+          <p class="mt-2 text-[color:var(--color-font-main)]">
+            Yes. Djangify was created for individuals who simply want to share their skills or experience as well as business owners. 
+            You do not need to register a business right away — you can sell under your own name while learning the process. However, you should consider tax laws when starting.
+            The focus is on starting small, gaining confidence, and building something that fits your life, not building a company overnight.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[color:var(--color-font-main)]">What happens after payment?</h3>
+          <p class="mt-2 text-[color:var(--color-font-main)]">
+             The store I build for you is just like this one. Once you pay successfully, a thank you page will appear with a download link. You can download the PDF - complete it and send it to me with your products and images. You will also find the download in your dashboard area when you log in. I usually ask for this information to be returned within 72 hours. Once returned your site will be ready days later. The sooner I receive your information the quicker your site is ready for you.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-[color:var(--color-font-main)]">How long does setup take?</h3>
+          <p class="mt-2 text-[color:var(--color-font-main)]">
+            I set up your fully working store in three to five days once you have your products and images ready. 
+            Djangify handles the structure, checkout, and payments - making sure it all works before handover. 
+            The setup is straightforward, tested for reliability, and designed for creators who value simplicity. Once complete I hand over all log in details and you are free to add additional products or make any other amendments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    {% include 'core/components/download-cta.html' %}
+
+    <!-- FAQ -->
+    <section id="faq" class="mt-16">
+      <h2 class="text-2xl font-semibold text-[color:var(--color-font-main)] mb-4">FAQ</h2>
+      <div class="max-w-3xl">
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">What is included in a Mini Ecommerce Shop setup?</summary>
+          <p class="mt-3 text-[color:var(--color-font-main)]">
+            Your setup includes everything needed to start selling online — product upload, Stripe payment integration, checkout testing, and a simple handover guide. All set up for you. 
+            You will have a ready-to-use digital shop designed to sell guides, PDFs, printables, or creative downloads. 
+            The goal is to give you full ownership and an easy way to manage your products, payments, and updates without relying on third-party tools or expensive monthly fees.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">Can I use Djangify if I have never sold anything online before?</summary>
+          <p class="mt-3 text-[color:var(--color-font-main)]">
+            Yes. Djangify is made for beginners and independent creators who want to start small. 
+            You don’t need coding knowledge or previous ecommerce experience. 
+            Once you provide your product details, we set up your store, test everything, and show you how to edit or add new products. 
+            The system is built to help you learn as you go, so you can grow with confidence and control.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">Is A Blog Included?</summary>
+          <p class="mt-3 text-[color:var(--color-font-main)]">
+            A blog is not included with this eCommerce setup but can be added for an additional fee. If you want to include a blog you can let me know when you complete your initial questionnaire and I will arrange for that to be included for you.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">How will people find my shop once it’s live?</summary>
+          <p class="mt-3 text-[color:var(--color-font-main)]">
+            Every Djangify shop is structured for strong search visibility. 
+            Pages load quickly, include schema markup, and are optimised for AI search engines. 
+            Your job will be to promote your site and/or individual products on social media, via paid ads or however you choose to market yourself online. 
+            Over time, consistent visibility and clear product descriptions will help your store build organic traffic and trust.
+          </p>
+        </details>
+
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">Can I add more products later?</summary>
+          <p class="mt-3 text-[color:var(--color-font-main)]">
+            Absolutely. Djangify’s modular design allows you to expand at your own pace. 
+            You can upload new products, adjust pricing, and create bundles whenever you’re ready. 
+            Many creators begin with one main offer and add companion items such as workbooks, templates, or guides. 
+            There’s no technical limit to growth — but the focus remains on keeping your shop simple, profitable, and sustainable.
+          </p>
+        </details>
+
+      </div>
+
+      <!-- JSON-LD Schema -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included in a Mini Ecommerce Shop setup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your setup includes everything needed to start selling online — product upload, Stripe payment integration, checkout testing, and a simple handover guide. You’ll have a ready-to-use digital shop built on Djangify, designed to sell guides, PDFs, printables, or creative downloads. The goal is to give you full ownership and an easy way to manage your products, payments, and updates without relying on third-party tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Djangify if I have never sold anything online before?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Djangify is made for beginners and independent creators who want to start small. You don’t need coding knowledge or previous ecommerce experience. Once you provide your product details, we set up your store, test everything, and show you how to edit or add new products. The system is built to help you learn as you go, so you can grow with confidence and control."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is A Blog Included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": " A blog is not included with this eCommerce setup but can be added for an additional fee. If you want to include a blog you can let me know when you complete your initial questionnaire and I will arrange for that to be included for you."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How will people find my shop once it’s live?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every Djangify shop is structured for strong search visibility. Pages load quickly, include schema markup, and are optimised for AI search engines. Your job will be to promote your site and/or individual products on social media, via paid ads or however you choose to market yourself online. Over time, consistent visibility and clear product descriptions will help your store build organic traffic and trust."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I add more products later?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Djangify’s modular design allows you to expand at your own pace. You can upload new products, adjust pricing, and create bundles whenever you’re ready. Many creators begin with one main offer and add companion items such as workbooks, templates, or guides. There’s no technical limit to growth — but the focus remains on keeping your shop simple, profitable, and sustainable."
+            }
+          }
+        ]
+      }
+      </script>
+    </section>
+
+    <!-- Cross Links -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-semibold text-[color:var(--color-font-main)]">Related Guides</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <a href="/news/ecommerce-health-checklist-for-beginners/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <h3 class="text-lg font-semibold text-[color:var(--color-brand-primary)]">Free eCommerce Health Checklist</h3>
+          <p class="text-[color:var(--color-font-main)] mt-1"> Common launch issues to consider before you go live.</p>
+        </a>
+        <a href="https://djangify.com/pdf-creation" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <h3 class="text-lg font-semibold text-[color:var(--color-brand-primary)]">Creating PDF Products</h3>
+          <p class="text-[color:var(--color-font-main)] mt-1">Turn Your Expertise Into a Professional PDF and position yourself as a trusted expert.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Reflection -->
+    <section class="mt-16">
+      <div class="rounded-2xl border border-gray-200 p-6 bg-[color:var(--color-bg-contrast)]">
+        <h2 class="text-xl font-semibold text-[color:var(--color-font-main)]">Reflection</h2>
+        <p class="text-[color:var(--color-font-main)] mt-2">
+          This week, choose one product and one platform — and take it live. Launching a simple store is the best way to learn what works.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+{% endblock %}

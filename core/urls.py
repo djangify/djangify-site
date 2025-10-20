@@ -18,6 +18,11 @@ urlpatterns = [
         name="mini-ecommerce",
     ),
     path(
+        "ecommerce-site-builder",
+        TemplateView.as_view(template_name="core/ecommerce-site-builder.html"),
+        name="ecommerce-builder",
+    ),
+    path(
         "tech-va/",
         TemplateView.as_view(template_name="core/tech-va.html"),
         name="tech_va",
