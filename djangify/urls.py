@@ -2,23 +2,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import (
-    StaticViewSitemap,
-    NewsSitemap,
-    NewsCategorySitemap,
-    ShopSitemap,
-    ShopCategorySitemap,
-)
+from .sitemaps import sitemaps
 from django.conf import settings
 from django.conf.urls.static import static
 
-sitemaps = {
-    "static": StaticViewSitemap,
-    "blog": NewsSitemap,
-    "category": NewsCategorySitemap,
-    "shop": ShopSitemap,
-    "shop_category": ShopCategorySitemap,
-}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
