@@ -5,16 +5,14 @@ from django.views.decorators.http import require_GET
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
-
-# --- Import models ---
-# Blog models (for news section)
 from news.models import Post, Category as BlogCategory
-
-# Shop models (for product listings)
 from shop.models import Product, Category as ProductCategory
-
-# --- Forms ---
 from .forms import SupportForm
+
+
+def mini_home(request):
+    products = Product.objects.filter(status="publish").order_by("-created")[:3]
+    return render(request, "core/mini-home.html", {"products": products})
 
 
 def home(request):

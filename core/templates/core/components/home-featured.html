@@ -103,13 +103,13 @@
               {% endif %}
             </p>
 
-            <!-- Ratings -->
-            <div class="text-gray-600 text-sm mb-3">
-              <div class="flex items-center justify-center mt-2 text-yellow-500 space-x-1">
-                {% if product.average_rating %}
+           <!-- Ratings -->
+            {% if product.reviews.count > 0 %}
+              <div class="text-gray-600 text-sm mb-3">
+                <div class="flex items-center justify-center mt-2 text-yellow-500 space-x-1">
                   {% for i in "12345"|make_list %}
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path 
+                      <path
                         d="M10 15l-5.878 3.09 1.123-6.545L.49 6.91l6.562-.954L10 0l2.948 5.956 6.562.954-4.755 4.635 1.123 6.545z"
                         {% if forloop.counter <= product.average_rating %}
                           class="fill-current"
@@ -120,11 +120,10 @@
                     </svg>
                   {% endfor %}
                   <span class="text-sm text-gray-600">({{ product.reviews.count }})</span>
-                {% else %}
-                  <span class="text-gray-500 italic">No reviews yet</span>
-                {% endif %}
+                </div>
               </div>
-            </div>
+            {% endif %}
+
 
             <!-- Button -->
             <a 

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mini Ecommerce Site — Example | Djangify{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<header>
+  {% include "core/hero.html" %}
+</header>
+
+<main class="text-[color:var(--color-font-main)] mt-8">
+
+  <!-- LATEST PRODUCTS -->
+  <section id="latest-products" class="py-12 px-6 md:px-12 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-10 text-[color:var(--color-brand-primary)]">
+      Latest Products
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for product in products %}
+      <article class="border border-[color:var(--color-brand-accent)] rounded-md overflow-hidden hover:shadow-md transition">
+        <a href="{{ product.get_absolute_url }}" class="block">
+          <figure class="aspect-[1/1] flex items-center justify-center bg-[color:var(--color-brand-light)]">
+            {% if product.get_image_url %}
+              <img src="{{ product.get_image_url }}" 
+                   alt="Image of {{ product.title }}"
+                   class="object-contain w-full h-full"
+                   width="350" height="350" loading="lazy">
+            {% else %}
+              <img src="{% static 'images/djangify-logo.png' %}" 
+                   alt="Default image for {{ product.title }}"
+                   class="object-contain w-full h-full"
+                   width="350" height="350" loading="lazy">
+            {% endif %}
+          </figure>
+        </a>
+        <div class="p-6 text-center">
+          <h3 class="text-xl font-semibold mb-2">{{ product.title }}</h3>
+          <p class="text-sm mb-4">
+            {% if product.section_description %}
+              {{ product.section_description|striptags|truncatechars:120 }}
+            {% elif product.description %}
+              {{ product.description|striptags|truncatechars:120 }}
+            {% else %}
+              <span class="text-gray-500 italic">No description available.</span>
+            {% endif %}
+          </p>
+          <p class="font-semibold mb-4">
+            £{{ product.current_price }}
+          </p>
+          <a href="{{ product.get_absolute_url }}" 
+             class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] px-6 py-2 rounded font-medium hover:bg-[color:var(--color-brand-secondary)] transition">
+            View Details
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ABOUT BOX (hardcoded full width) -->
+  <section id="about" class="max-w-7xl mx-auto px-6 md:px-12 py-12">
+    <div class="border border-[color:var(--color-brand-accent)] rounded-md p-8 ">
+      <h2 class="text-3xl font-semibold text-center mb-4 text-[color:var(--color-brand-primary)]">
+        About This Mini Ecommerce Site
+      </h2>
+      <p class="prose text-[color:var(--color-font-main)] leading-relaxed text-center">
+        This demo shows how a small, focused digital download site looks when built with Djangify.
+        It’s designed for creators and small businesses who want a professional system
+        without the weight of a full-scale ecommerce platform. You can sell up to three digital products,
+        manage your own content, and deliver instant downloads through the built-in customer dashboard.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA BOX -->
+  {% include "core/components/download-cta.html" %}
+
+  <!-- CLOSING PARAGRAPH (hardcoded) -->
+  <section id="home-closing" class="max-w-7xl mx-auto px-6 md:px-12 py-12 text-[color:var(--color-font-main)]">
+    <div class="border border-[color:var(--color-brand-accent)] rounded-md p-8 ">
+      <p class="prose text-center text-lg leading-relaxed">
+        This example represents the simplest version of a Djangify-built store that is fast, secure,
+        and ready to use. When you are ready to grow beyond three products,
+        you can upgrade to the 25-product version for even more flexibility,
+        all built on the same reliable foundation.
+      </p>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

@@ -1,12 +1,14 @@
 from django.urls import path
 from . import views
 from django.views.generic import TemplateView
+from core import views as core_views
 
 
 app_name = "core"
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("ecommerce-demo/", core_views.mini_home, name="mini_home"),
     path(
         "digital-marketing-specialist",
         TemplateView.as_view(template_name="core/digital-marketing-specialist.html"),
@@ -15,12 +17,12 @@ urlpatterns = [
     path(
         "create-mini-ecommerce",
         TemplateView.as_view(template_name="core/create-mini-ecommerce.html"),
-        name="mini-ecommerce",
+        name="mini_ecommerce",
     ),
     path(
         "ecommerce-site-builder",
         TemplateView.as_view(template_name="core/ecommerce-site-builder.html"),
-        name="ecommerce-builder",
+        name="ecommerce_builder",
     ),
     path(
         "tech-va/",
