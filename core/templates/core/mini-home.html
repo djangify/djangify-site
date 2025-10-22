@@ -1,67 +1,109 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Mini Ecommerce Site — Example | Djangify{% endblock %}
 
 {% block content %}
-
 <!-- HERO -->
-<header>
-  {% include "core/hero.html" %}
-</header>
+{% load static %}
+
+<section 
+  id="hero"
+  class="relative w-full flex items-center justify-center text-center overflow-hidden"
+  role="banner"
+  aria-label="Hero Section"
+>
+  <!-- Background Image -->
+  <div 
+    class="absolute inset-0"
+    style="background-image: url('{% static "images/hero-bg.webp" %}');
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-position: center;"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Light overlay -->
+  <div class="absolute inset-0 bg-[color:var(--color-brand-light)]/60"></div>
+
+  <!-- Hero Content -->
+  <div class="relative flex flex-col items-center justify-center text-center py-8 px-6 lg:py-12 max-w-5xl mx-auto z-10">
+    <h1 class="text-4xl lg:text-5xl font-bold uppercase leading-relaxed mb-4 text-[color:var(--color-font-main)]">
+      Start Selling Digital Downloads the Simple Way
+    </h1>
+
+    <p class="text-lg lg:text-xl leading-relaxed font-medium max-w-3xl text-[color:var(--color-font-main)] mb-6">
+      A professional mini ecommerce site built for selling one to three digital products — secure, fast, and ready to use. No plugins, no monthly fees, just a clean system that works.
+    </p>
+
+    <a 
+      href="https://djangify.com/shop/product/mini-ecommerce-site/"
+      class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] px-8 py-4 rounded-md text-lg font-semibold shadow-md hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-transform transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+    >
+      Get Your Mini Ecommerce Site
+    </a>
+  </div>
+</section>
 
 <main class="text-[color:var(--color-font-main)] mt-8">
 
   <!-- LATEST PRODUCTS -->
-  <section id="latest-products" class="py-12 px-6 md:px-12 max-w-6xl mx-auto">
+  <section id="latest-products" class="py-8 px-6 md:px-12 max-w-6xl mx-auto">
+
     <h2 class="text-3xl font-bold text-center mb-10 text-[color:var(--color-brand-primary)]">
       Latest Products
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for product in products %}
-      <article class="border border-[color:var(--color-brand-accent)] rounded-md overflow-hidden hover:shadow-md transition">
+      <article class="border border-[color:var(--color-brand-accent)] rounded-md overflow-hidden hover:shadow-md transition flex flex-col">
         <a href="{{ product.get_absolute_url }}" class="block">
           <figure class="aspect-[1/1] flex items-center justify-center bg-[color:var(--color-brand-light)]">
             {% if product.get_image_url %}
               <img src="{{ product.get_image_url }}" 
-                   alt="Image of {{ product.title }}"
-                   class="object-contain w-full h-full"
-                   width="350" height="350" loading="lazy">
+                  alt="Image of {{ product.title }}"
+                  class="object-contain w-full h-full"
+                  width="350" height="350" loading="lazy">
             {% else %}
               <img src="{% static 'images/djangify-logo.png' %}" 
-                   alt="Default image for {{ product.title }}"
-                   class="object-contain w-full h-full"
-                   width="350" height="350" loading="lazy">
+                  alt="Default image for {{ product.title }}"
+                  class="object-contain w-full h-full"
+                  width="350" height="350" loading="lazy">
             {% endif %}
           </figure>
         </a>
-        <div class="p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">{{ product.title }}</h3>
-          <p class="text-sm mb-4">
-            {% if product.section_description %}
-              {{ product.section_description|striptags|truncatechars:120 }}
-            {% elif product.description %}
-              {{ product.description|striptags|truncatechars:120 }}
-            {% else %}
-              <span class="text-gray-500 italic">No description available.</span>
-            {% endif %}
-          </p>
-          <p class="font-semibold mb-4">
-            £{{ product.current_price }}
-          </p>
-          <a href="{{ product.get_absolute_url }}" 
-             class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] px-6 py-2 rounded font-medium hover:bg-[color:var(--color-brand-secondary)] transition">
-            View Details
-          </a>
+
+        <!-- Text content: force equal height + spacing -->
+        <div class="p-6 flex flex-col justify-between flex-grow text-center">
+          <div>
+            <h3 class="text-xl font-semibold mb-2">{{ product.title }}</h3>
+            <p class="text-sm mb-4 min-h-[80px]">
+              {% if product.section_description %}
+                {{ product.section_description|striptags|truncatechars:120 }}
+              {% elif product.description %}
+                {{ product.description|striptags|truncatechars:120 }}
+              {% else %}
+                <span class="text-gray-500 italic">No description available.</span>
+              {% endif %}
+            </p>
+          </div>
+
+          <div class="mt-auto">
+            <p class="font-semibold mb-4">£{{ product.current_price }}</p>
+            <a href="{{ product.get_absolute_url }}" 
+              class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] px-6 py-2 rounded font-medium hover:bg-[color:var(--color-brand-secondary)] transition">
+              View Details
+            </a>
+          </div>
         </div>
       </article>
+
       {% endfor %}
     </div>
   </section>
 
   <!-- ABOUT BOX (hardcoded full width) -->
-  <section id="about" class="max-w-7xl mx-auto px-6 md:px-12 py-12">
+  <section id="about" class="max-w-6xl mx-auto px-6 md:px-12 py-8">
+
     <div class="border border-[color:var(--color-brand-accent)] rounded-md p-8 ">
       <h2 class="text-3xl font-semibold text-center mb-4 text-[color:var(--color-brand-primary)]">
         About This Mini Ecommerce Site
@@ -75,11 +117,104 @@
     </div>
   </section>
 
-  <!-- CTA BOX -->
-  {% include "core/components/download-cta.html" %}
+  
+  <!-- Free Download / Product CTA -->
+  <section 
+    id="download-cta" 
+    class="mt-8 mb-8 px-6 md:px-12"
+    role="region"
+    aria-labelledby="download-cta-title"
+  >
+    <div class="max-w-5xl mx-auto">
+      <div 
+        class="grid grid-cols-1 md:grid-cols-3 items-center gap-10 lg:gap-12
+              bg-[color:var(--color-brand-light)] 
+              border border-[color:var(--color-brand-accent)] 
+              rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm"
+      >
 
+        <!-- Title spans full width -->
+        <div class="md:col-span-3 text-center">
+          <h2 
+            id="download-cta-title" 
+            class="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight 
+                  text-[color:var(--color-brand-primary)]"
+          >
+            {{ homepage_settings.cta_title }}
+          </h2>
+        </div>
+        <!-- Text Section -->
+        <div class="md:col-span-2 space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+          {% if homepage_settings.cta_text %}
+            <div class="prose text-[color:var(--color-font-main)] leading-relaxed">
+              {{ homepage_settings.cta_text|safe }}
+            </div>
+          {% endif %}
+
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4" role="group" aria-label="Download and navigation links">
+            {% if homepage_settings.cta_pdf_upload %}
+              <a 
+                href="{{ homepage_settings.cta_pdf_upload.url }}"
+                class="inline-flex items-center uppercase border-2 border-[color:var(--color-brand-primary)] 
+                      bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] 
+                      text-sm sm:text-base px-6 py-3 rounded font-semibold 
+                      hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                      transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+                aria-label="Download the free {{ homepage_settings.cta_title }}"
+                download
+              >
+                {{ homepage_settings.cta_button_text }}
+              </a>
+            {% elif homepage_settings.cta_button_link %}
+              <a 
+                href="{{ homepage_settings.cta_button_link }}"
+                class="inline-flex items-center uppercase border-2 border-[color:var(--color-brand-primary)] 
+                      bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] 
+                      text-sm sm:text-base px-6 py-3 rounded font-semibold 
+                      hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                      transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+                aria-label="Access the {{ homepage_settings.cta_title }}"
+              >
+                {{ homepage_settings.cta_button_text }}
+              </a>
+            {% endif %}
+
+            {% if homepage_settings.cta_secondary_link %}
+              <a 
+                href="{{ homepage_settings.cta_secondary_link }}"
+                class="inline-flex items-center uppercase border border-[color:var(--color-brand-accent)] 
+                      text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] 
+                      text-sm sm:text-base px-6 py-3 rounded font-medium 
+                      hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                      transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+                aria-label="Explore more products in our shop"
+              >
+                {{ homepage_settings.cta_secondary_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Image Preview -->
+        {% if homepage_settings.cta_image %}
+        <div class="flex justify-center lg:justify-end mt-8 lg:mt-0">
+          <figure 
+            class="w-56 sm:w-60 md:w-64 lg:w-60 aspect-[3/4] flex items-center justify-center overflow-hidden rounded-md"
+          >
+            <img
+              src="{{ homepage_settings.cta_image.url }}"
+              alt="Preview of {{ homepage_settings.cta_title }}"
+              class="object-contain w-full h-full" width="600" height="800" loading="lazy"
+            />
+          </figure>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
   <!-- CLOSING PARAGRAPH (hardcoded) -->
-  <section id="home-closing" class="max-w-7xl mx-auto px-6 md:px-12 py-12 text-[color:var(--color-font-main)]">
+  <section id="home-closing" class="max-w-6xl mx-auto px-4 md:px-8 py-8 text-[color:var(--color-font-main)]">
+
     <div class="border border-[color:var(--color-brand-accent)] rounded-md p-8 ">
       <p class="prose text-center text-lg leading-relaxed">
         This example represents the simplest version of a Djangify-built store that is fast, secure,
