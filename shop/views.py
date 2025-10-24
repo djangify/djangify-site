@@ -11,8 +11,8 @@ from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 import stripe
 import os
+from django.db.models import Count, Q
 import logging
-from django.db.models import Q
 import mimetypes
 from wsgiref.util import FileWrapper
 from shop.forms import GuestDetailsForm, ProductReviewForm
@@ -32,7 +32,17 @@ def product_list(request, template_name="core/home.html"):
     Displays 4 latest products at the top (by publish date)
     and excludes them from the main 8-product paginated grid below.
     """
-    categories = Category.objects.all()
+    categories = (
+        Category.objects.annotate(
+            published_count=Count(
+                "product",
+                filter=Q(product__status="publish", product__is_active=True),
+            )
+        )
+        .filter(published_count__gt=0)
+        .distinct()
+    )
+
     query = request.GET.get("q", "").strip()
     category_slug = request.GET.get("category")
 
@@ -140,7 +150,9 @@ def cart_add(request, product_id):
 
 
 def category_hub(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(
+        product__status="publish", product__is_active=True
+    ).distinct()
     return render(request, "shop/category_hub.html", {"categories": categories})
 
 
@@ -375,20 +387,18 @@ def category_list(request, slug):
     products = Product.objects.filter(
         category=category, status__in=["publish", "soon", "full"], is_active=True
     ).order_by("order", "-created")
-    categories = Category.objects.all()
 
-    paginator = Paginator(products, 20)
+    paginator = Paginator(products, 12)  # adjust per row layout
     page = request.GET.get("page")
     products = paginator.get_page(page)
 
     return render(
         request,
-        "core/home.html",
+        "shop/category.html",
         {
+            "category": category,
             "products": products,
-            "categories": categories,
-            "current_category": category,
-            "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
+            "hide_featured": True,
         },
     )
 

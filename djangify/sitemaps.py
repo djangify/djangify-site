@@ -13,7 +13,7 @@ class StaticViewSitemap(Sitemap):
     def items(self):
         return [
             "core:home",
-            "core:mini-ecommerce",
+            "core:mini_ecommerce",
             "core:tech_va",
             "core:pdf_creation",
             "core:support",
