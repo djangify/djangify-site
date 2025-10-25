@@ -39,7 +39,7 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Featured Articles</h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
         {% for post in featured_posts|slice:"0:4" %}
         <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
           <a href="{{ post.get_absolute_url }}">
@@ -74,7 +74,7 @@
     {% if posts %}
     <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Latest Articles</h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-8">
       {% for post in posts %}
       <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
         <a href="{{ post.get_absolute_url }}">
