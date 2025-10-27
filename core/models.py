@@ -30,12 +30,6 @@ class HomePageSettings(models.Model):
         default="Djangify",
         help_text="Displayed in the navbar next to the logo.",
     )
-    business_paragraph = models.TextField(
-        "Deprecated – previously Hero Paragraph",
-        blank=True,
-        null=True,
-        help_text="Old hero paragraph, now replaced by hero_paragraph. Safe to delete once migrated.",
-    )
     logo_image = models.ImageField(
         "Logo Image",
         upload_to="homepage/logo/",
@@ -62,6 +56,18 @@ class HomePageSettings(models.Model):
         blank=True,
         null=True,
         help_text="Optional hero background image (recommended 700×500px).",
+    )
+    # ✅ NEW: Independent Hero Call-to-Action
+    hero_button_text = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text="Optional button text for the hero area (e.g. 'Shop Now').",
+    )
+    hero_button_link = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Optional button link for the hero area (e.g. product or shop URL).",
     )
 
     # --- Footer Info ---
@@ -132,7 +138,12 @@ class HomePageSettings(models.Model):
     additional_products_title = models.CharField(
         max_length=150, default="More to Explore"
     )
-    homepage_intro = models.TextField(blank=True, null=True)
+    closing_text = models.TextField(
+        "Closing Text (End of Homepage)",
+        blank=True,
+        null=True,
+        help_text="Optional text box shown after the download CTA at the bottom of the homepage.",
+    )
     announcement_bar_text = models.CharField(max_length=200, blank=True, null=True)
     seo_meta_title = models.CharField(max_length=150, blank=True, null=True)
     seo_meta_description = models.CharField(max_length=255, blank=True, null=True)

@@ -34,6 +34,7 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
                     "hero_title",
                     "hero_paragraph",
                     "hero_image",
+                    ("hero_button_text", "hero_button_link"),
                 ),
                 "description": "Main hero content displayed on the homepage.",
             },
@@ -93,8 +94,8 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
                 "fields": (
                     "featured_products_title",
                     "additional_products_title",
-                    "homepage_intro",
                     "announcement_bar_text",
+                    "closing_text",
                     "seo_meta_title",
                     "seo_meta_description",
                 ),
