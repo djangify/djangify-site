@@ -57,7 +57,7 @@
           <div class="p-6 flex flex-col flex-grow">
             <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
             <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
-              {{ post.content|striptags|truncatewords:25 }}
+              {{ post.content|striptags|truncatewords:25|safe }}
             </p>
             <a href="{{ post.get_absolute_url }}"
                class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
@@ -92,7 +92,7 @@
         <div class="p-6 flex flex-col flex-grow">
           <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
           <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
-            {{ post.content|striptags|truncatewords:25 }}
+            {{ post.content|striptags|truncatewords:25|safe }}
           </p>
           <a href="{{ post.get_absolute_url }}"
              class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">

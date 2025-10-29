@@ -1,6 +1,16 @@
 html {
   scroll-behavior: smooth;
+
+
 }
+
+.prose ul,
+.prose ol,
+.prose li {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 
 /* === NEWS DETAIL PAGE MEDIA === */
 .newsformat .hero-media {
