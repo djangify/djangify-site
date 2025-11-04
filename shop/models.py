@@ -41,7 +41,7 @@ class Product(models.Model):
         ("full", "Fully Booked"),
         ("draft", "Draft"),
     ]
-    PRODUCT_TYPES = [("download", "Digital Download"), ("coaching", "Coaching Hours")]
+    PRODUCT_TYPES = [("download", "Digital Download"), ("coaching", "Service Hours")]
 
     # Basic Fields
     public_id = models.CharField(max_length=130, blank=True, null=True, db_index=True)
@@ -78,7 +78,7 @@ class Product(models.Model):
         null=True, blank=True, help_text="Sale price in pence"
     )
     price_per_hour = models.PositiveIntegerField(
-        null=True, blank=True, help_text="Coaching price per hour in pence"
+        null=True, blank=True, help_text="Price per hour in pence"
     )
 
     # Media
