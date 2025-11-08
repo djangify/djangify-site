@@ -10,16 +10,16 @@
 
   <!-- Primary Meta Description -->
   {% block meta_description %}
-  <meta name="description" content="Djangify helps creators and entrepreneurs build AI-search-ready ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.">
+  <meta name="description" content="Djangify helps creators and entrepreneurs build ecommerce sites that are self-owned, practical and ready to grow.">
   {% endblock %}
 
   <!-- Keywords -->
-  <meta name="keywords" content="{% block meta_keywords %}mini ecommerce shop, mini ecommerce store, AI search ready websites, Django ecommerce, digital product systems, build online shops, ecommerce setup, digital business guides{% endblock %}">
+  <meta name="keywords" content="{% block meta_keywords %}mini ecommerce site, ecommerce builder, ecommerce site builder, mini ecommerce store, AI search ready websites, Django ecommerce, digital product systems, build online shops, ecommerce setup, digital business guides{% endblock %}">
 
   <!-- Open Graph / Social -->
   {% block open_graph_tags %}
-  <meta property="og:title" content="Build Your Mini eCommerce Shop with Djangify">
-  <meta property="og:description" content="Djangify helps creators and entrepreneurs build mini ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.">
+  <meta property="og:title" content="Build Your Mini eCommerce Site with Djangify">
+  <meta property="og:description" content="Djangify helps creators and entrepreneurs build mini ecommerce sites that are practical and ready to grow.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
   <meta property="og:image" content="{% static 'images/djangify-logo.png' %}">
@@ -42,7 +42,7 @@
   <link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}">
 
   <!-- Page Title -->
-  <title>{% block title %}Mini eCommerce Shops & Digital Systems | {{ site.name }}{% endblock %}</title>
+  <title>{% block title %}Mini eCommerce Site Builder | {{ site.name }}{% endblock %}</title>
 
   {% block extra_meta %}{% endblock %}
   <!-- Website JSON-LD Schema -->
@@ -52,7 +52,7 @@
     "@type": "WebSite",
     "name": "Djangify",
     "url": "https://djangify.com/",
-    "description": "Djangify helps creators and entrepreneurs build mini ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.",
+    "description": "Djangify helps content creators and entrepreneurs build mini ecommerce sites. Simple, practical, and ready to grow.",
     "publisher": {
       "@type": "Organization",
       "name": "Djangify",

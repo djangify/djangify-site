@@ -17,6 +17,11 @@
             All Policies
           </a>
         </li>
+        <li>
+          <a href="{% url 'news:list' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+            Blog
+          </a>
+        </li>
 
         {% if not request.user.is_authenticated %}
           <li>
