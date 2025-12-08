@@ -13,6 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 # Application definition
 INSTALLED_APPS = [
+    "adminita",  # THIS MUST BE FIRST
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -92,8 +93,11 @@ SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # your custom assets (CSS, JS, images)
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Only include if you want to use WhiteNoise for static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

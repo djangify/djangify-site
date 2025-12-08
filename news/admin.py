@@ -20,14 +20,9 @@ class PostAdminForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # remove TinyMCE from ad_code
-        if "ad_code" in self.fields:
-            self.fields["ad_code"].widget = AdminTextareaWidget(
-                attrs={"rows": 6, "class": "vLargeTextField"}
-            )
+        widgets = {
+            "ad_code": AdminTextareaWidget(attrs={"rows": 6}),
+        }
 
 
 @admin.register(Post)
