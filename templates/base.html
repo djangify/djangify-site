@@ -44,6 +44,11 @@
   <!-- Page Title -->
   <title>{% block title %}Mini eCommerce Site Builder | {{ site.name }}{% endblock %}</title>
 
+    <!-- Alpine and HTMX CDN scripts -->
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+
   {% block extra_meta %}{% endblock %}
   <!-- Website JSON-LD Schema -->
   <script type="application/ld+json">

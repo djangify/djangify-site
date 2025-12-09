@@ -11,6 +11,13 @@ class PageSettings(models.Model):
     homepage_mode = models.CharField(
         max_length=10, choices=HOMEPAGE_CHOICES, default="SHOP"
     )
+    show_blog_on_homepage = models.BooleanField(
+        default=False, help_text="Show the latest 3 blog posts on the homepage."
+    )
+
+    show_gallery_on_homepage = models.BooleanField(
+        default=False, help_text="Show gallery images on the homepage."
+    )
 
     def __str__(self):
         return "Pages Settings"
@@ -42,6 +49,19 @@ class Page(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    # Navigation controls
+    show_in_navigation = models.BooleanField(
+        default=True, help_text="Show this page in the top navigation bar."
+    )
+
+    show_in_footer = models.BooleanField(
+        default=True, help_text="Show this page in the footer links."
+    )
+
+    menu_order = models.PositiveIntegerField(
+        default=0, help_text="Control the order of this page in the navigation."
+    )
+
     class Meta:
         ordering = ["title"]
 
@@ -56,13 +76,11 @@ class Page(models.Model):
 
 class PageSection(models.Model):
     SECTION_TYPES = [
-        ("hero", "Hero"),
         ("text", "Text Block"),
         ("two_column", "Two Column"),
         ("features", "Features Grid"),
         ("cta", "Call to Action"),
         ("faq", "FAQ List"),
-        ("image_full", "Full Width Image"),
         ("contact_form", "Contact Form"),
     ]
 
@@ -82,6 +100,22 @@ class PageSection(models.Model):
         return f"{self.page.title} – {self.section_type}"
 
 
+class GalleryImage(models.Model):
+    image = models.ImageField(upload_to="gallery/")
+    title = models.CharField(max_length=200)
+    caption = models.TextField(blank=True)
+    order = models.PositiveIntegerField(default=0)
+    published = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order"]
+        verbose_name = "Gallery Image"
+        verbose_name_plural = "Gallery Images"
+
+    def __str__(self):
+        return self.title or f"Image {self.id}"
+
+
 class HeroBanner(models.Model):
     text = models.CharField(max_length=200, default="New Resources Available!")
     action_text = models.CharField(max_length=100, default="See what's new")
@@ -95,3 +129,28 @@ class HeroBanner(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Hero(models.Model):
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=300, blank=True)
+    body = HTMLField(blank=True, null=True)
+
+    button_text = models.CharField(max_length=100, blank=True)
+    button_link = models.CharField(max_length=300, blank=True)
+
+    image = models.ImageField(upload_to="hero/", blank=True, null=True)
+    video_url = models.CharField(
+        max_length=300,
+        blank=True,
+        help_text="Paste a YouTube embed URL. Leave blank if using an image.",
+    )
+
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Hero Section"
+        verbose_name_plural = "Hero Sections"
+
+    def __str__(self):
+        return self.title

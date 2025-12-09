@@ -7,14 +7,16 @@
     <nav aria-label="Footer navigation">
       <ul class="flex flex-wrap justify-center gap-6 text-sm text-[color:var(--color-font-main)]">
 
-        <!-- Dynamic Pages -->
+        <!-- Dynamic Pages (Footer filtering) -->
         {% for p in published_pages %}
-        <li>
-          <a href="{{ p.get_absolute_url }}"
-             class="hover:text-[color:var(--color-brand-secondary)] transition">
-            {{ p.title }}
-          </a>
-        </li>
+          {% if p.show_in_footer %}
+          <li>
+            <a href="{{ p.get_absolute_url }}"
+               class="hover:text-[color:var(--color-brand-secondary)] transition">
+              {{ p.title }}
+            </a>
+          </li>
+          {% endif %}
         {% endfor %}
 
         <!-- Shop (always shown) -->

@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Page, PageSettings, HeroBanner
+from .models import Page, PageSettings, HeroBanner, GalleryImage, Hero
+from django.http import Http404
+from news.models import Post
 
 
 def _render_page(request, template_name):
@@ -11,22 +13,47 @@ def _render_page(request, template_name):
 
 
 def home_view(request):
-    # Get homepage settings (optional)
     settings_obj = PageSettings.objects.first()
 
-    # Get the homepage page object
-    page = get_object_or_404(Page, template="home", published=True)
+    if not settings_obj:
+        raise Http404("Page settings missing")
 
-    # Get published sections (ordered)
+    # Determine which homepage to show
+    if settings_obj.homepage_mode == "SHOP":
+        return render(request, "shop/home.html", {})
+
+    # Load the actual "home" page
+    try:
+        page = Page.objects.get(template="home", published=True)
+    except Page.DoesNotExist:
+        raise Http404("Homepage does not exist")
+
+    # All published sections for the homepage
     sections = page.sections.filter(published=True).order_by("order")
 
-    # Active hero banner (optional)
-    banner = HeroBanner.objects.filter(is_active=True).first()
+    # Hero banner (optional)
+    hero_banner = HeroBanner.objects.filter(is_active=True).first()
+    hero = Hero.objects.filter(is_active=True).first()
+
+    # Blog posts
+    blog_posts = None
+    if settings_obj.show_blog_on_homepage:
+        blog_posts = Post.objects.filter(status="published").order_by("-created")[:3]
+
+    # Gallery
+    gallery_items = None
+    if settings_obj.show_gallery_on_homepage:
+        gallery_items = GalleryImage.objects.filter(published=True).order_by("order")[
+            :6
+        ]
 
     context = {
         "page": page,
         "sections": sections,
-        "banner": banner,
+        "hero": hero,
+        "hero_banner": hero_banner,
+        "blog_posts": blog_posts,
+        "gallery_items": gallery_items,
     }
 
     return render(request, "pages/home.html", context)
