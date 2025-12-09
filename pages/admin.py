@@ -1,19 +1,72 @@
 from django.contrib import admin
-from .models import Page, PageSection, PageSettings, GalleryImage, HeroBanner, Hero
+from django import forms
+from tinymce.widgets import TinyMCE
+from .models import (
+    Page,
+    PageSection,
+    ThreeColumnBlock,
+    PageSettings,
+    GalleryImage,
+    HeroBanner,
+    Hero,
+)
 
 
-# Inline: Page sections inside a Page
+# Make HTML optional
+class PageSectionForm(forms.ModelForm):
+    class Meta:
+        model = PageSection
+        fields = "__all__"
+
+    body = forms.CharField(widget=TinyMCE(), required=False)
+
+
 class PageSectionInline(admin.StackedInline):
     model = PageSection
+    form = PageSectionForm
+    extra = 1
+    can_delete = True
+
+    fieldsets = (
+        (
+            "Page Section",
+            {
+                "fields": (
+                    "section_type",
+                    "title",
+                    "subtitle",
+                    "body",
+                    "image",
+                    "order",
+                    "published",
+                )
+            },
+        ),
+    )
+
+
+class ThreeColumnInline(admin.StackedInline):
+    model = ThreeColumnBlock
     extra = 0
-    fields = (
-        "section_type",
-        "title",
-        "subtitle",
-        "body",
-        "image",
-        "order",
-        "published",
+    can_delete = True
+
+    fieldsets = (
+        (
+            "3-Column Block",
+            {
+                "classes": ("collapse",),
+                "fields": (
+                    "published",
+                    "order",
+                    ("col_1_title", "col_1_image"),
+                    "col_1_body",
+                    ("col_2_title", "col_2_image"),
+                    "col_2_body",
+                    ("col_3_title", "col_3_image"),
+                    "col_3_body",
+                ),
+            },
+        ),
     )
 
 
@@ -22,7 +75,7 @@ class PageAdmin(admin.ModelAdmin):
     list_display = ("title", "template", "published", "menu_order")
     list_filter = ("template", "published")
     prepopulated_fields = {"slug": ("title",)}
-    inlines = [PageSectionInline]
+    inlines = [PageSectionInline, ThreeColumnInline]
 
 
 @admin.register(PageSettings)

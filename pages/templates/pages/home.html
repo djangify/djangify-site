@@ -6,24 +6,24 @@
     {% include "pages/sections/hero.html" %}
 {% endif %}
 
-
-
-
-<!-- PAGE SECTIONS -->
+<!-- PAGE SECTIONS (dynamic sections from PageSection model) -->
 {% for section in sections %}
     {% include "pages/sections/"|add:section.section_type|add:".html" %}
 {% endfor %}
 
-<!-- BLOG -->
-{% if blog_posts %}
-    {% include "pages/sections/blog_posts.html" %}
-{% endif %}
+{% for block in three_columns %}
+    {% include "pages/sections/content_blocks.html" with block=block %}
+{% endfor %}
+
 
 <!-- GALLERY -->
 {% if gallery_items %}
     {% include "pages/sections/gallery.html" %}
 {% endif %}
-
+<!-- BLOG -->
+{% if blog_posts %}
+    {% include "pages/sections/blog_posts.html" %}
+{% endif %}
 
 
 {% endblock %}

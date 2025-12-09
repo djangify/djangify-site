@@ -1,5 +1,12 @@
 <section class="py-16 bg-[color:var(--color-brand-light)]"
-         x-data="galleryLightbox()">
+         x-data="galleryLightbox()"
+         x-init="
+            items = [...$el.querySelectorAll('[data-gallery-item]')].map(i => ({
+                src: i.getAttribute('data-src'),
+                caption: i.getAttribute('data-caption')
+            }))
+         ">
+
 
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-bold mb-8 text-center">Gallery</h2>
@@ -11,8 +18,12 @@
            @click="open({{ forloop.counter0 }})">
 
         <img src="{{ img.image.url }}"
-             alt="{{ img.title }}"
-             class="w-full h-48 object-cover">
+          alt="{{ img.title }}"
+          data-gallery-item
+          data-src="{{ img.image.url }}"
+          data-caption="{{ img.caption|default:img.title }}"
+          class="w-full h-48 object-cover">
+
 
         {% if img.title or img.caption %}
         <div class="p-4 space-y-2">

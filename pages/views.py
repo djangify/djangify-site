@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Page, PageSettings, HeroBanner, GalleryImage, Hero
+from .models import Page, PageSettings, HeroBanner, GalleryImage, Hero, ThreeColumnBlock
 from django.http import Http404
 from news.models import Post
 
@@ -30,6 +30,9 @@ def home_view(request):
 
     # All published sections for the homepage
     sections = page.sections.filter(published=True).order_by("order")
+    three_columns = ThreeColumnBlock.objects.filter(page=page, published=True).order_by(
+        "order"
+    )
 
     # Hero banner (optional)
     hero_banner = HeroBanner.objects.filter(is_active=True).first()
@@ -52,6 +55,7 @@ def home_view(request):
         "sections": sections,
         "hero": hero,
         "hero_banner": hero_banner,
+        "three_columns": three_columns,
         "blog_posts": blog_posts,
         "gallery_items": gallery_items,
     }
@@ -105,3 +109,8 @@ def detail_view(request, slug):
     }
 
     return render(request, "pages/custom.html", context)
+
+
+def gallery_image_modal(request, pk):
+    image = get_object_or_404(GalleryImage, pk=pk)
+    return render(request, "gallery/modal.html", {"image": image})

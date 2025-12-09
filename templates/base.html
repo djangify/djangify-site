@@ -48,6 +48,8 @@
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
+  
+
 
   {% block extra_meta %}{% endblock %}
   <!-- Website JSON-LD Schema -->
@@ -125,7 +127,11 @@
     </div>
   </div>
 </div>
-
+<div id="gallery-modal" 
+     class="hidden fixed inset-0 bg-black/80 z-50 items-center justify-center"
+     hx-target="this"
+     hx-swap="innerHTML">
+</div>
 <!-- Cookie Consent Script (works first time, then gone) -->
 <script>
 (function () {
@@ -183,6 +189,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="{% static 'js/app.js' %}" defer></script>
 <script src="{% static 'js/messages.js' %}"defer></script>
+
 
   </body>
 </html>

@@ -1,0 +1,13 @@
+<div class="w-full h-full flex items-center justify-center animate-fade-in"
+     onclick="document.getElementById('gallery-modal').classList.add('hidden'); 
+              document.getElementById('gallery-modal').innerHTML='';">
+
+    <img src="{{ image.image.url }}"
+         alt="{{ image.title }}"
+         class="max-w-3xl max-h-[90vh] rounded-xl shadow-2xl border border-white/20">
+
+</div>
+
+<script>
+document.getElementById("gallery-modal").classList.remove("hidden");
+</script>

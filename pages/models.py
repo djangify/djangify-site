@@ -27,8 +27,6 @@ class Page(models.Model):
     TEMPLATE_CHOICES = [
         ("home", "Homepage"),
         ("about", "About"),
-        ("services", "Services"),
-        ("contact", "Contact"),
         ("custom", "Custom Page"),
     ]
 
@@ -36,11 +34,6 @@ class Page(models.Model):
     slug = models.SlugField(unique=True)
     template = models.CharField(max_length=20, choices=TEMPLATE_CHOICES)
     published = models.BooleanField(default=True)
-
-    # Content blocks
-    content_block_1 = HTMLField(blank=True, null=True)
-    content_block_2 = HTMLField(blank=True, null=True)
-    content_block_3 = HTMLField(blank=True, null=True)
 
     # SEO
     meta_title = models.CharField(max_length=60, blank=True)
@@ -69,7 +62,7 @@ class Page(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        if self.template in ["home", "about", "services", "contact"]:
+        if self.template in ["home", "about"]:
             return reverse(f"pages:{self.template}")
         return reverse("pages:detail", args=[self.slug])
 
@@ -98,6 +91,32 @@ class PageSection(models.Model):
 
     def __str__(self):
         return f"{self.page.title} – {self.section_type}"
+
+
+class ThreeColumnBlock(models.Model):
+    page = models.ForeignKey(
+        Page, related_name="three_columns", on_delete=models.CASCADE
+    )
+    order = models.PositiveIntegerField(default=0)
+    published = models.BooleanField(default=True)
+
+    col_1_title = models.CharField(max_length=200, blank=True)
+    col_1_body = HTMLField(blank=True, null=True)
+    col_1_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
+
+    col_2_title = models.CharField(max_length=200, blank=True)
+    col_2_body = HTMLField(blank=True, null=True)
+    col_2_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
+
+    col_3_title = models.CharField(max_length=200, blank=True)
+    col_3_body = HTMLField(blank=True, null=True)
+    col_3_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"3-Column Block for {self.page.title}"
 
 
 class GalleryImage(models.Model):
@@ -140,11 +159,6 @@ class Hero(models.Model):
     button_link = models.CharField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to="hero/", blank=True, null=True)
-    video_url = models.CharField(
-        max_length=300,
-        blank=True,
-        help_text="Paste a YouTube embed URL. Leave blank if using an image.",
-    )
 
     is_active = models.BooleanField(default=True)
 
