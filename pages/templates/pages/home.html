@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Optional Hero Banner -->
+{% if banner %}
+<div class="flex justify-center mt-6">
+    <a href="{{ banner.action_link }}"
+       class="flex items-center px-4 py-2 rounded-full bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+        {% if banner.badge_text %}
+            <span class="px-2 py-1 mr-2 text-xs font-semibold rounded bg-blue-600 text-white">
+                {{ banner.badge_text }}
+            </span>
+        {% endif %}
+        <span class="font-medium">{{ banner.text }}</span>
+        {% if banner.action_text %}
+            <span class="ml-2 text-sm underline">
+                {{ banner.action_text }} →
+            </span>
+        {% endif %}
+    </a>
+</div>
+{% endif %}
+
+<!-- Render Sections -->
+{% for section in sections %}
+    {% include "pages/sections/"|add:section.section_type|add:".html" %}
+{% endfor %}
+
+{% endblock %}

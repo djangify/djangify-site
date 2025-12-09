@@ -1,0 +1,13 @@
+<section class="py-16 bg-[color:var(--color-brand-primary)] text-white text-center">
+    <h2 class="text-3xl font-bold mb-4">{{ section.title }}</h2>
+
+    {% if section.subtitle %}
+    <p class="text-lg mb-6">{{ section.subtitle }}</p>
+    {% endif %}
+
+    {% if section.body %}
+    <div class="prose mx-auto text-white">
+        {{ section.body|safe }}
+    </div>
+    {% endif %}
+</section>

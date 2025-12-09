@@ -1,0 +1,20 @@
+<section class="py-16">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+        {% if section.image %}
+        <div>
+            <img src="{{ section.image.url }}"
+                 alt="{{ section.title }}"
+                 class="rounded-xl shadow">
+        </div>
+        {% endif %}
+
+        <div class="prose">
+            {% if section.title %}
+            <h2 class="text-3xl font-bold">{{ section.title }}</h2>
+            {% endif %}
+            {{ section.body|safe }}
+        </div>
+
+    </div>
+</section>

@@ -13,7 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 # Application definition
 INSTALLED_APPS = [
-    "adminita",  # THIS MUST BE FIRST
+    # "adminita",  # THIS MUST BE FIRST
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "news",
     "accounts",
     "shop",
+    "pages",
     "infopages",
     "widget_tweaks",
 ]
@@ -60,6 +61,7 @@ TEMPLATES = [
                 "core.context_processors.dashboard_settings",
                 "core.context_processors.current_site",
                 "django.contrib.messages.context_processors.messages",
+                "pages.context_processors.published_pages",
             ],
         },
     },
