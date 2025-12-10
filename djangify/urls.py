@@ -22,7 +22,7 @@ urlpatterns = [
     # ---- ROOT HOMEPAGE LOGIC FIRST ----
     path("", dynamic_home, name="home"),
     # ---- PAGE-BASED ROUTES ----
-    path("pages/", include("pages.urls")),
+    path("", include("pages.urls", namespace="pages")),
     path("", include("infopages.urls")),  # this is okay because it uses specific slugs
     # ---- NEWS / BLOG ----
     path("news/", include("news.urls")),
