@@ -25,6 +25,23 @@ class StaticViewSitemap(Sitemap):
         return reverse(item)
 
 
+class PageSitemap(Sitemap):
+    priority = 0.7
+    changefreq = "weekly"
+
+    def items(self):
+        from pages.models import Page
+
+        # Only return published pages
+        return Page.objects.filter(published=True)
+
+    def lastmod(self, obj):
+        return obj.updated
+
+    def location(self, obj):
+        return obj.get_absolute_url()
+
+
 class InfoPageSitemap(Sitemap):
     priority = 0.8
     changefreq = "monthly"
@@ -95,6 +112,7 @@ class ShopCategorySitemap(Sitemap):
 # Combine all sitemaps in a dictionary
 sitemaps = {
     "static": StaticViewSitemap,
+    "pages": PageSitemap,
     "info_pages": InfoPageSitemap,
     "news": NewsSitemap,
     "news_category": NewsCategorySitemap,

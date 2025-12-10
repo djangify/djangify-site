@@ -69,12 +69,11 @@ class Page(models.Model):
 
 class PageSection(models.Model):
     SECTION_TYPES = [
-        ("text", "Text Block"),
-        ("two_column", "Two Column"),
-        ("features", "Features Grid"),
         ("cta", "Call to Action"),
         ("faq", "FAQ List"),
-        ("contact_form", "Contact Form"),
+        ("features", "Features Grid"),
+        ("text", "Text Block"),
+        ("two_column", "Two Column"),
     ]
 
     page = models.ForeignKey(Page, related_name="sections", on_delete=models.CASCADE)

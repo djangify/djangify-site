@@ -75,30 +75,6 @@ def about_view(request):
     return render(request, "pages/about.html", context)
 
 
-def services_view(request):
-    page = get_object_or_404(Page, template="services", published=True)
-    sections = page.sections.filter(published=True).order_by("order")
-
-    context = {
-        "page": page,
-        "sections": sections,
-    }
-
-    return render(request, "pages/services.html", context)
-
-
-def contact_view(request):
-    page = get_object_or_404(Page, template="contact", published=True)
-    sections = page.sections.filter(published=True).order_by("order")
-
-    context = {
-        "page": page,
-        "sections": sections,
-    }
-
-    return render(request, "pages/contact.html", context)
-
-
 def detail_view(request, slug):
     page = get_object_or_404(Page, slug=slug, published=True)
     sections = page.sections.filter(published=True).order_by("order")
