@@ -83,6 +83,8 @@ class PageSection(models.Model):
     subtitle = models.CharField(max_length=200, blank=True)
     body = HTMLField(blank=True, null=True)
     image = models.ImageField(upload_to="pages/", blank=True, null=True)
+    button_text = models.CharField(max_length=100, blank=True)
+    button_link = models.CharField(max_length=300, blank=True)
     order = models.PositiveIntegerField(default=0)
     published = models.BooleanField(default=True)
 

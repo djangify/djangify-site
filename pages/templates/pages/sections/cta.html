@@ -6,8 +6,17 @@
     {% endif %}
 
     {% if section.body %}
-    <div class="prose mx-auto text-white">
+    <div class="prose mx-auto text-white mb-6">
         {{ section.body|safe }}
     </div>
+    {% endif %}
+
+    {% if section.button_text and section.button_link %}
+    <a 
+        href="{{ section.button_link }}"
+        class="uppercase inline-block px-6 py-3 text-[color:var(--color-brand-light)] font-semibold border-2 border-[color:var(--color-brand-light)] rounded-md hover:bg-[color:var(--color-brand-accent)] hover:text-[color:var(--color-brand-light)] transition-colors tracking-wide"
+    >
+        {{ section.button_text }}
+    </a>
     {% endif %}
 </section>
