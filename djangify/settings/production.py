@@ -71,4 +71,4 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 SITE_URL = env("SITE_URL", default="https://www.djangify.com")
 
-from logging_config import LOGGING  # noqa: E402
+from logging_config import LOGGING  # noqa: F401, E402

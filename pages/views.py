@@ -66,10 +66,13 @@ def home_view(request):
 def about_view(request):
     page = get_object_or_404(Page, template="about", published=True)
     sections = page.sections.filter(published=True).order_by("order")
-
+    three_columns = ThreeColumnBlock.objects.filter(page=page, published=True).order_by(
+        "order"
+    )
     context = {
         "page": page,
         "sections": sections,
+        "three_columns": three_columns,
     }
 
     return render(request, "pages/about.html", context)
@@ -78,10 +81,13 @@ def about_view(request):
 def detail_view(request, slug):
     page = get_object_or_404(Page, slug=slug, published=True)
     sections = page.sections.filter(published=True).order_by("order")
-
+    three_columns = ThreeColumnBlock.objects.filter(page=page, published=True).order_by(
+        "order"
+    )
     context = {
         "page": page,
         "sections": sections,
+        "three_columns": three_columns,
     }
 
     return render(request, "pages/custom.html", context)

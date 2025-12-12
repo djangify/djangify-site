@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Page Title -->
 <div class="max-w-3xl mx-auto text-center mt-12 mb-12">
     <h1 class="text-4xl font-bold text-[color:var(--color-font-heading)] mb-4">
         {{ page.title }}
@@ -11,9 +10,12 @@
     {% endif %}
 </div>
 
-<!-- Sections -->
 {% for section in sections %}
     {% include "pages/sections/"|add:section.section_type|add:".html" %}
+{% endfor %}
+
+{% for block in three_columns %}
+    {% include "pages/sections/content_blocks.html" with block=block %}
 {% endfor %}
 
 {% endblock %}

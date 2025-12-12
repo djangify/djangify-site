@@ -8,5 +8,9 @@
 {% for section in sections %}
     {% include "pages/sections/"|add:section.section_type|add:".html" %}
 {% endfor %}
+{% for block in three_columns %}
+    {% include "pages/sections/content_blocks.html" with block=block %}
+{% endfor %}
+
 
 {% endblock %}
