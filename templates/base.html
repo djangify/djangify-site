@@ -36,8 +36,6 @@
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="{% static 'css/output.css' %}"></noscript>
   <noscript><link rel="stylesheet" href="{% static 'css/custom.css' %}"></noscript>
-
-    
   <!-- Favicon -->
   <link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}">
 
@@ -45,7 +43,7 @@
   <title>{% block title %}Mini eCommerce Site Builder | {{ site.name }}{% endblock %}</title>
 
     <!-- Alpine and HTMX CDN scripts -->
-  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
   
@@ -189,6 +187,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script src="{% static 'js/app.js' %}" defer></script>
 <script src="{% static 'js/messages.js' %}"defer></script>
+<script src="{% static 'js/gallery.js' %}"defer></script>
 
 
   </body>

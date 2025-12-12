@@ -28,6 +28,7 @@ class Page(models.Model):
         ("home", "Homepage"),
         ("about", "About"),
         ("custom", "Custom Page"),
+        ("gallery", "Gallery Page"),
     ]
 
     title = models.CharField(max_length=200)
@@ -101,15 +102,15 @@ class ThreeColumnBlock(models.Model):
     order = models.PositiveIntegerField(default=0)
     published = models.BooleanField(default=True)
 
-    col_1_title = models.CharField(max_length=200, blank=True)
+    col_1_title = models.CharField(max_length=200, blank=True, null=True)
     col_1_body = HTMLField(blank=True, null=True)
     col_1_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
 
-    col_2_title = models.CharField(max_length=200, blank=True)
+    col_2_title = models.CharField(max_length=200, blank=True, null=True)
     col_2_body = HTMLField(blank=True, null=True)
     col_2_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
 
-    col_3_title = models.CharField(max_length=200, blank=True)
+    col_3_title = models.CharField(max_length=200, blank=True, null=True)
     col_3_body = HTMLField(blank=True, null=True)
     col_3_image = models.ImageField(upload_to="pages/columns/", blank=True, null=True)
 
@@ -120,9 +121,31 @@ class ThreeColumnBlock(models.Model):
         return f"3-Column Block for {self.page.title}"
 
 
+class GalleryBlock(models.Model):
+    page = models.ForeignKey(Page, related_name="galleries", on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, blank=True)
+    order = models.PositiveIntegerField(default=0)
+    published = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order"]
+        verbose_name = "Gallery Block"
+        verbose_name_plural = "Gallery Blocks"
+
+    def __str__(self):
+        return f"Gallery for {self.page.title}"
+
+
 class GalleryImage(models.Model):
+    gallery = models.ForeignKey(
+        GalleryBlock,
+        related_name="images",
+        on_delete=models.CASCADE,
+        null=True,  # ← REQUIRED
+        blank=True,  # ← REQUIRED
+    )
     image = models.ImageField(upload_to="gallery/")
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True)
     caption = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0)
     published = models.BooleanField(default=True)
@@ -133,7 +156,7 @@ class GalleryImage(models.Model):
         verbose_name_plural = "Gallery Images"
 
     def __str__(self):
-        return self.title or f"Image {self.id}"
+        return self.title or f"Image {self.pk}"
 
 
 class HeroBanner(models.Model):

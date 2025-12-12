@@ -7,6 +7,7 @@ from .models import (
     ThreeColumnBlock,
     PageSettings,
     GalleryImage,
+    GalleryBlock,
     HeroBanner,
     Hero,
 )
@@ -47,6 +48,12 @@ class PageSectionInline(admin.StackedInline):
     )
 
 
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+    extra = 0
+    ordering = ("order",)
+
+
 class ThreeColumnInline(admin.StackedInline):
     model = ThreeColumnBlock
     extra = 0
@@ -72,12 +79,24 @@ class ThreeColumnInline(admin.StackedInline):
     )
 
 
+class GalleryBlockInline(admin.StackedInline):
+    model = GalleryBlock
+    extra = 0
+    can_delete = True
+    ordering = ("order",)
+    fields = ("title", "order", "published")
+
+
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     list_display = ("title", "template", "published", "menu_order")
     list_filter = ("template", "published")
     prepopulated_fields = {"slug": ("title",)}
-    inlines = [PageSectionInline, ThreeColumnInline]
+    inlines = [
+        PageSectionInline,
+        ThreeColumnInline,
+        GalleryBlockInline,
+    ]
 
 
 @admin.register(PageSettings)
@@ -89,10 +108,17 @@ class PageSettingsAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(GalleryImage)
-class GalleryImageAdmin(admin.ModelAdmin):
-    list_display = ("title", "order", "published")
-    list_editable = ("order", "published")
+@admin.register(GalleryBlock)
+class GalleryBlockAdmin(admin.ModelAdmin):
+    list_display = ("title", "page", "order", "published")
+    list_filter = ("page", "published")
+    ordering = ("page", "order")
+    readonly_fields = ("page",)
+
+    inlines = [GalleryImageInline]
+
+    def has_add_permission(self, request):
+        return False  # removes the button that allows to add a gallery
 
 
 @admin.register(HeroBanner)
