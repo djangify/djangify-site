@@ -1,87 +1,63 @@
-{% extends "base.html" %}
-{% load static %}
-{% load instance_utils %}
+{% elif block.images %}
+<section class="mt-16">
+    
 
-{% block content %}
+    {% if block.title %}
+        <h2 class="text-2xl font-semibold mb-10 text-center tracking-tight">
+            {{ block.title }}
+        </h2>
+    {% endif %}
 
-<div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-2 auto-rows-[280px] mb-16">
 
-    <!-- Page title -->
-    <header class="mb-12 text-center">
-        <h1 class="text-4xl font-bold text-[color:var(--color-font-heading)] mb-4">
-            {{ page.title }}
-        </h1>
+        {% for image in block.images.all %}
+            {% if image.published %}
+                {% cycle 'one' 'two' 'three' 'four' 'five' 'six' as position silent %}
 
-        {% if page.meta_description %}
-            <p class="text-lg text-[color:var(--color-font-main)]/70 max-w-2xl mx-auto">
-                {{ page.meta_description }}
-            </p>
-        {% endif %}
-    </header>
+                <figure class="relative group overflow-hidden shadow-sm bg-[color:var(--color-brand-light)]
+                    {% if position == 'one' %}
+                        sm:col-span-1 lg:col-span-3
+                    {% elif position == 'two' %}
+                        sm:col-span-2 lg:col-span-6
+                    {% elif position == 'three' %}
+                        sm:col-span-1 lg:col-span-3
 
-    <!-- Content blocks -->
-    {% for block in content_blocks %}
+                    {% elif position == 'four' %}
+                        sm:col-span-2 lg:col-span-6
+                    {% elif position == 'five' %}
+                        sm:col-span-1 lg:col-span-3
+                    {% else %}
+                        sm:col-span-1 lg:col-span-3
+                    {% endif %}
+                ">
 
-        {% if block|is_pagesection %}
-            {% include "pages/sections/"|add:block.section_type|add:".html" with section=block %}
-
-        {% elif block|is_threecolumn %}
-            {% include "pages/sections/content_blocks.html" with block=block %}
-
-        {% elif block.images %}
-            <!-- Masonry Gallery -->
-            <section class="mt-12">
-                {% if block.title %}
-                    <h2 class="text-2xl font-semibold mb-6 text-center">
-                        {{ block.title }}
-                    </h2>
-                {% endif %}
-
-                <div
-                    class="
-                        columns-1
-                        sm:columns-2
-                        md:columns-3
-                        lg:columns-4
-                        gap-6
-                        space-y-6
-                    "
-                >
-                    {% for image in block.images.all %}
-                        {% if image.published %}
-                            <figure class="break-inside-avoid overflow-hidden rounded-xl bg-white shadow-sm">
-                                <a
-                                  href="{% url 'pages:gallery_image_modal' image.pk %}"
-                                  hx-get="{% url 'pages:gallery_image_modal' image.pk %}"
-                                  hx-target="#gallery-modal"
-                                  hx-swap="innerHTML"
-                                  hx-trigger="click"
-                                  class="block cursor-zoom-in"
-                              >
-                                  <img
-                                      src="{{ image.image.url }}"
-                                      alt="{{ image.title }}"
-                                      class="w-full h-auto rounded-xl hover:opacity-90 transition"
-                                      loading="lazy"
-                                  />
-                              </a>
+                    <a
+                        href="{% url 'pages:gallery_image_modal' image.pk %}"
+                        hx-get="{% url 'pages:gallery_image_modal' image.pk %}"
+                        hx-target="body"
+                        hx-swap="beforeend"
+                        hx-trigger="click"
+                        class="block w-full h-full cursor-zoom-in"
+                    >
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:'' }}"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                    </a>
 
 
+                    {% if image.caption %}
+                        <figcaption class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                            <span class="text-white text-lg font-medium">{{ image.caption }}</span>
+                        </figcaption>
+                    {% endif %}
+                </figure>
 
-                                {% if image.caption %}
-                                    <figcaption class="p-3 text-sm text-[color:var(--color-font-main)]/70">
-                                        {{ image.caption }}
-                                    </figcaption>
-                                {% endif %}
-                            </figure>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </section>
-        {% endif %}
+            {% endif %}
+        {% endfor %}
 
-    {% endfor %}
-
-</div>
-
-{% endblock %}
+    </div>
+</section>
+{% endif %}

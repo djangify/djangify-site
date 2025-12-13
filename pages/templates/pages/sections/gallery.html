@@ -1,29 +1,64 @@
-<section class="py-16 bg-[color:var(--color-brand-light)]">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-center">Gallery</h2>
+{% if block.images %}
 
-        <!-- HTMX Gallery Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {% for image in gallery_items %}
-                <div class="cursor-pointer group"
-                     hx-get="{% url 'pages:gallery_image_modal' pk=image.id %}"
-                     hx-target="#gallery-modal"
-                     hx-swap="innerHTML"
-                     hx-trigger="click">
+<section class="mt-16">
 
-                    <div class="overflow-hidden rounded-xl shadow-md">
-                        <img src="{{ image.image.url }}"
-                             alt="{{ image.title }}"
-                             class="w-full h-48 md:h-64 object-cover transform 
-                                    group-hover:scale-105 transition duration-300">
-                    </div>
+    {% if block.title %}
+        <h2 class="text-2xl font-semibold mb-10 text-center tracking-tight">
+            {{ block.title }}
+        </h2>
+    {% endif %}
+ <div class="max-w-7xl mx-auto px-4 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-2 auto-rows-[280px]">
 
-                    <p class="mt-2 text-center text-gray-700 text-sm">
-                        {{ image.title }}
-                    </p>
+        {% for image in block.images.all %}
+            {% if image.published %}
+                {% cycle 'one' 'two' 'three' 'four' 'five' 'six' as position silent %}
 
-                </div>
-            {% endfor %}
-        </div>
+                <figure class="relative group overflow-hidden shadow-sm bg-[color:var(--color-brand-light)]
+                    {% if position == 'one' %}
+                        sm:col-span-1 lg:col-span-3
+                    {% elif position == 'two' %}
+                        sm:col-span-2 lg:col-span-6
+                    {% elif position == 'three' %}
+                        sm:col-span-1 lg:col-span-3
+
+                    {% elif position == 'four' %}
+                        sm:col-span-2 lg:col-span-6
+                    {% elif position == 'five' %}
+                        sm:col-span-1 lg:col-span-3
+                    {% else %}
+                        sm:col-span-1 lg:col-span-3
+                    {% endif %}
+                ">
+
+                    <a
+                        href="{% url 'pages:gallery_image_modal' image.pk %}"
+                        hx-get="{% url 'pages:gallery_image_modal' image.pk %}"
+                        hx-target="body"
+                        hx-swap="beforeend"
+                        hx-trigger="click"
+                        class="block w-full h-full cursor-zoom-in"
+                    >
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:'' }}"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                    </a>
+
+
+                    {% if image.caption %}
+                        <figcaption class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                            <span class="text-white text-lg font-medium">{{ image.caption }}</span>
+                        </figcaption>
+                    {% endif %}
+                </figure>
+
+            {% endif %}
+        {% endfor %}
+
     </div>
+</div>
 </section>
+{% endif %}
