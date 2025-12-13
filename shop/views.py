@@ -26,7 +26,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 logger = logging.getLogger("shop")
 
 
-def product_list(request, template_name="core/home.html"):
+def product_list(request):
     """
     Main product listing view.
     Displays 4 latest products at the top (by publish date)
@@ -80,7 +80,7 @@ def product_list(request, template_name="core/home.html"):
 
     return render(
         request,
-        template_name,
+        "shop/list.html",
         {
             "latest_products": latest_products,
             "products": products,

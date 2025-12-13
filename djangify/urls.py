@@ -5,16 +5,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .sitemaps import sitemaps
-from pages.models import PageSettings
 from pages.views import home_view
-from shop.views import product_list
 
 
 def dynamic_home(request):
-    settings_obj = PageSettings.objects.first()
-    if settings_obj and settings_obj.homepage_mode == "PAGES":
-        return home_view(request)
-    return product_list(request)
+    return home_view(request)
 
 
 urlpatterns = [
@@ -22,7 +17,7 @@ urlpatterns = [
     # ---- ROOT HOMEPAGE LOGIC FIRST ----
     path("", dynamic_home, name="home"),
     # ---- PAGE-BASED ROUTES ----
-    path("", include("pages.urls", namespace="pages")),
+    path("pages/", include("pages.urls", namespace="pages")),
     path("", include("infopages.urls")),  # this is okay because it uses specific slugs
     # ---- NEWS / BLOG ----
     path("news/", include("news.urls")),
