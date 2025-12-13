@@ -34,8 +34,8 @@
                     <a
                         href="{% url 'pages:gallery_image_modal' image.pk %}"
                         hx-get="{% url 'pages:gallery_image_modal' image.pk %}"
-                        hx-target="body"
-                        hx-swap="beforeend"
+                        hx-target="#gallery-modal"
+                        hx-swap="innerHTML"
                         hx-trigger="click"
                         class="block w-full h-full cursor-zoom-in"
                     >
@@ -49,7 +49,8 @@
 
 
                     {% if image.caption %}
-                        <figcaption class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                        <figcaption class="pointer-events-none absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+
                             <span class="text-white text-lg font-medium">{{ image.caption }}</span>
                         </figcaption>
                     {% endif %}
