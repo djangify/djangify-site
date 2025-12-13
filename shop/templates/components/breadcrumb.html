@@ -3,13 +3,13 @@
 
     <!-- Home -->
     <li class="flex items-center">
-      <a href="{% url 'core:home' %}" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Home</a>
+      <a href="{{ HOME_URL }}" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Home</a>
       <i class="fa-solid fa-angle-right mx-2 text-[color:var(--color-brand-accent)]/70"></i>
     </li>
 
     <!-- Shop -->
     <li class="flex items-center">
-      <a href="{% url 'core:home' %}#latest-products" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Shop</a>
+      <a href="{{ HOME_URL }}#latest-products" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Shop</a>
       {% if product.category %}
       <i class="fa-solid fa-angle-right mx-2 text-[color:var(--color-brand-accent)]/70"></i>
       {% endif %}

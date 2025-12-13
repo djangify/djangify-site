@@ -60,6 +60,7 @@ TEMPLATES = [
                 "core.context_processors.homepage_settings",
                 "core.context_processors.dashboard_settings",
                 "core.context_processors.current_site",
+                "core.context_processors.canonical_home",
                 "django.contrib.messages.context_processors.messages",
                 "pages.context_processors.published_pages",
             ],

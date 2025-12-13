@@ -11,6 +11,9 @@ class PageSettings(models.Model):
     homepage_mode = models.CharField(
         max_length=10, choices=HOMEPAGE_CHOICES, default="SHOP"
     )
+    show_shop_on_homepage = models.BooleanField(
+        default=False, help_text="Show featured products on the homepage."
+    )
     show_blog_on_homepage = models.BooleanField(
         default=False, help_text="Show the latest 3 blog posts on the homepage."
     )

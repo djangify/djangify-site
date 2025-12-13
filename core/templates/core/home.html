@@ -16,7 +16,7 @@
 </section>
   <!-- Category Pills -->
   <div id="categories-grid" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 uppercase px-4">
-    <a href="{% url 'core:home' %}"
+    <a href="{{ HOME_URL }}"
     class="px-4 py-2 rounded-md text-sm font-semibold border border-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-colors {% if not current_category %}bg-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] font-bold border-[color:var(--color-brand-accent)]{% endif %}">
     All Products
   </a>

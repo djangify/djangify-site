@@ -22,6 +22,9 @@
         {% include "pages/sections/gallery.html" with gallery_items=block.images.all %}
 
     {% endif %}
+{% if featured_products %}
+    {% include "pages/sections/featured_products.html" %}
+{% endif %}
 
 {% endfor %}
 {% if blog_posts %}

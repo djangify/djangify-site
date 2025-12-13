@@ -1,6 +1,7 @@
 # core/context_processors.py
 from .models import HomePageSettings, DashboardSettings
 from django.contrib.sites.models import Site
+from .utils import get_home_url
 
 
 def homepage_settings(request):
@@ -40,3 +41,7 @@ def dashboard_settings(request):
     except Exception:
         settings = None
     return {"dashboard_settings": settings}
+
+
+def canonical_home(request):
+    return {"HOME_URL": get_home_url()}

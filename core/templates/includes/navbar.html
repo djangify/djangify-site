@@ -7,7 +7,7 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center h-20">
     
     <!-- Logo + Business Name -->
-    <a href="{% url 'core:home' %}" class="flex items-center gap-2"
+    <a href="{{ HOME_URL }}" class="flex items-center gap-2"
        aria-label="{{ homepage_settings.business_name|default:'Home' }}">
       {% if homepage_settings.logo_image %}
         <img src="{{ homepage_settings.logo_image.url }}"

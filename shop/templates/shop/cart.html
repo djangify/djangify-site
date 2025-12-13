@@ -66,7 +66,7 @@
 
         <!-- Buttons -->
         <div class="flex flex-col md:flex-row justify-end gap-4 mt-4">
-          <a href="{% url 'core:home' %}"
+          <a href="{{ HOME_URL }}"
              class="w-full md:w-auto px-6 py-3 border border-gray-300 rounded-lg text-[color:var(--color-font-main)] bg-white hover:bg-gray-100 text-center transition">
             Continue Shopping
           </a>
@@ -80,7 +80,7 @@
       <!-- Empty Cart -->
       <div class="text-center py-8 text-[color:var(--color-font-main)]">
         <p>Your cart is empty.</p>
-        <a href="{% url 'core:home' %}#latest-products" 
+        <a href="{{ HOME_URL }}#latest-products" 
            class="inline-block mt-4 px-6 py-3 bg-[color:var(--color-brand-secondary)] text-white rounded-lg hover:bg-[color:var(--color-brand-primary)] transition">
           Continue Shopping
         </a>

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Page, PageSettings, HeroBanner, GalleryImage, Hero
 from django.http import Http404
 from news.models import Post
+from shop.models import Product
 
 
 def _render_page(request, template_name):
@@ -16,10 +17,6 @@ def home_view(request):
     settings_obj = PageSettings.objects.first()
     if not settings_obj:
         raise Http404("Page settings missing")
-
-    # Shop homepage shortcut
-    if settings_obj.homepage_mode == "SHOP":
-        return render(request, "shop/home.html", {})
 
     page = get_object_or_404(Page, template="home", published=True)
 
@@ -39,6 +36,14 @@ def home_view(request):
         blog_posts = Post.objects.filter(status="published").order_by("-publish_date")[
             :3
         ]
+    featured_products = None
+
+    if settings_obj.show_shop_on_homepage:
+        featured_products = Product.objects.filter(
+            is_active=True,
+            status="publish",
+            featured=True,
+        ).order_by("order", "-created")[:4]
 
     context = {
         "page": page,
@@ -46,6 +51,7 @@ def home_view(request):
         "hero": Hero.objects.filter(is_active=True).first(),
         "hero_banner": HeroBanner.objects.filter(is_active=True).first(),
         "blog_posts": blog_posts,
+        "featured_products": featured_products,
     }
 
     return render(request, "pages/home.html", context)

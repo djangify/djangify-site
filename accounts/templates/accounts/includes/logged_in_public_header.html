@@ -72,7 +72,7 @@
           <a href="{% url 'accounts:dashboard' %}" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition rounded-t-lg">Dashboard</a>
           <a href="{% url 'shop:purchases' %}" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition">My Orders</a>
           <a href="{% url 'accounts:profile' %}" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition">Profile Info</a>
-          <a href="{% url 'core:home' %}#latest-products" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition">Shop</a>
+          <a href="{% url 'shop:product_list' %}" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition">Shop</a>
           <a href="{% url 'core:support' %}" class="block py-2 px-4 hover:bg-[color:var(--color-brand-light)] transition">Support</a>
           <a href="{% url 'accounts:logout' %}" class="block py-2 px-4 text-red-600 hover:bg-red-50 rounded-b-lg font-medium transition">Sign out</a>
         </div>
@@ -97,7 +97,7 @@
     <a href="{% url 'accounts:dashboard' %}" class="block w-full text-center py-2">Dashboard</a>
     <a href="{% url 'shop:purchases' %}" class="block w-full text-center py-2">My Orders</a>
     <a href="{% url 'accounts:profile' %}" class="block w-full text-center py-2">Profile Info</a>
-    <a href="{% url 'core:home' %}#latest-products" class="block w-full text-center py-2">Shop</a>
+    <a href="{% url 'shop:product_list' %}" class="block w-full text-center py-2">Shop</a>
     <a href="{% url 'core:support' %}" class="block w-full text-center py-2">Support</a>
     <a href="{% url 'accounts:logout' %}" class="block w-full text-center py-2 text-red-600">Sign Out</a>
   </div>
